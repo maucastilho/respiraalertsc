@@ -390,7 +390,7 @@ function renderStatsGrid(municipios) {
 // ================================================================
 function renderRanking() {
   if (window.Ranking) {
-    Ranking.inicializar(MUNICIPIOS, (ibge) => selecionarMunicipio(ibge));
+    Ranking.inicializar(MUNICIPIOS, (ibge) => abrirPaginaMunicipio(ibge));
   } else {
     // Fallback inline
     renderTbodyRanking([...MUNICIPIOS].sort((a,b)=>b.total_internacoes-a.total_internacoes));
@@ -421,7 +421,7 @@ function renderTbodyRanking(dados) {
   const tbody = document.getElementById('tbody-ranking');
   if (!tbody) return;
   tbody.innerHTML = dados.map((m,idx) => `
-    <tr>
+    <tr onclick="abrirPaginaMunicipio('${m.municipio_ibge}')" style="cursor:pointer">
       <td style="color:var(--text-muted);font-family:var(--font-mono)">${String(idx+1).padStart(2,'0')}</td>
       <td style="font-weight:500;color:var(--text-primary)">${m.municipio_nome}</td>
       <td style="font-family:var(--font-mono)">${Number(m.total_internacoes).toLocaleString('pt-BR')}</td>
@@ -616,7 +616,7 @@ function _panelRow(label, value) {
 }
 
 function abrirPaginaMunicipio(ibge) {
-  window.open('pages/municipio.html?ibge='+ibge,'_blank');
+  window.location.href = 'pages/municipio.html?ibge=' + encodeURIComponent(ibge);
 }
 
 async function inicializarMapaCanvas() {
