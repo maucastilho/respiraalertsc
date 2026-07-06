@@ -148,7 +148,7 @@ function chartOpts(dual=false){
 }
 
 async function carregar(){
-  // Pegar IBGE da querystring: ?ibge=420655
+  // Pegar IBGE da querystring: ?ibge=<codigo_ibge>
   const params = new URLSearchParams(location.search);
   const ibge   = params.get('ibge');
 
