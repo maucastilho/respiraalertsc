@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d1527"/>
+      <stop offset="100%" stop-color="#080e1c"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Fundo circular -->
+  <circle cx="100" cy="100" r="96" fill="url(#bg)" stroke="#00c2ff" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Anel decorativo externo -->
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#00c2ff" stroke-width="0.5" stroke-opacity="0.15" stroke-dasharray="4 6"/>
+  <!-- Silhueta de pulmão estilizado -->
+  <g filter="url(#glow)" opacity="0.9">
+    <!-- Brônquio central -->
+    <line x1="100" y1="68" x2="100" y2="95" stroke="#00c2ff" stroke-width="3" stroke-linecap="round"/>
+    <!-- Bifurcação -->
+    <path d="M100 85 Q88 90 80 100" stroke="#00c2ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M100 85 Q112 90 120 100" stroke="#00c2ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Pulmão esquerdo -->
+    <path d="M80 100 Q65 108 62 120 Q60 133 68 140 Q76 147 85 142 Q92 137 95 128 Q97 118 100 110" 
+          stroke="#00c2ff" stroke-width="2" fill="rgba(0,194,255,0.08)" stroke-linecap="round"/>
+    <!-- Pulmão direito -->
+    <path d="M120 100 Q135 108 138 120 Q140 133 132 140 Q124 147 115 142 Q108 137 105 128 Q103 118 100 110" 
+          stroke="#00c2ff" stroke-width="2" fill="rgba(0,194,255,0.08)" stroke-linecap="round"/>
+  </g>
+  <!-- Indicador de temperatura (âmbar) -->
+  <circle cx="100" cy="65" r="7" fill="#f59e0b" opacity="0.9"/>
+  <line x1="100" y1="72" x2="100" y2="82" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
+  <!-- Pontos de dados -->
+  <circle cx="72" cy="118" r="2.5" fill="#00c2ff" opacity="0.7"/>
+  <circle cx="83" cy="130" r="2" fill="#00c2ff" opacity="0.5"/>
+  <circle cx="128" cy="118" r="2.5" fill="#00c2ff" opacity="0.7"/>
+  <circle cx="117" cy="130" r="2" fill="#00c2ff" opacity="0.5"/>
+  <!-- Texto RESPIRALERT -->
+  <text x="100" y="165" font-family="'Barlow Condensed', sans-serif" font-size="13" font-weight="800" 
+        fill="#00c2ff" text-anchor="middle" letter-spacing="2">RESPIRALERT</text>
+  <text x="100" y="178" font-family="'Inter', sans-serif" font-size="8" font-weight="400" 
+        fill="#4a6080" text-anchor="middle" letter-spacing="3">SC</text>
+</svg>

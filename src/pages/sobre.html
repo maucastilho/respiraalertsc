@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre — RespirAlert SC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#080e1c;--surface:#0d1527;--card:#111d35;
+      --border:rgba(0,194,255,0.12);--border-b:rgba(0,194,255,0.30);
+      --cyan:#00c2ff;--amber:#f59e0b;--green:#10b981;--red:#ef4444;--purple:#8b5cf6;
+      --text:#e8f4fd;--text2:#8bacc8;--muted:#4a6080;
+      --radius:8px;--radius-lg:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
+    .logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--cyan);}
+    .back{color:var(--cyan);text-decoration:none;font-size:13px;border:1px solid var(--border-b);padding:5px 12px;border-radius:var(--radius);transition:.2s;}
+    .back:hover{background:rgba(0,194,255,0.1);}
+    .page{max-width:960px;margin:0 auto;padding:40px 24px 60px;}
+    /* Hero */
+    .hero{text-align:center;padding:60px 0 48px;}
+    .hero-icon{font-size:56px;margin-bottom:16px;}
+    .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;color:var(--cyan);line-height:1.1;margin-bottom:12px;}
+    .hero-sub{font-size:16px;color:var(--text2);max-width:600px;margin:0 auto 28px;}
+    .hero-tagline{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--amber);letter-spacing:.5px;}
+    /* Cards */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;}
+    .card-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--cyan);margin-bottom:14px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    @media(max-width:700px){.grid-2{grid-template-columns:1fr;}}
+    /* Tech stack */
+    .tech-item{display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;}
+    .tech-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0;}
+    .tech-name{font-weight:600;color:var(--text);font-size:13px;}
+    .tech-desc{font-size:11px;color:var(--muted);}
+    /* Disciplinas */
+    .disc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+    .disc-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;text-align:center;}
+    .disc-icon{font-size:24px;margin-bottom:6px;}
+    .disc-name{font-size:12px;font-weight:600;color:var(--text2);}
+    /* Quote */
+    .quote{background:rgba(0,194,255,0.05);border-left:3px solid var(--cyan);border-radius:0 var(--radius-lg) var(--radius-lg) 0;padding:18px 20px;margin:24px 0;font-size:15px;color:var(--text2);font-style:italic;line-height:1.7;}
+    /* Links */
+    .links-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;}
+    .link-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border:1px solid var(--border-b);border-radius:var(--radius);color:var(--cyan);text-decoration:none;font-size:13px;font-weight:500;transition:.2s;}
+    .link-btn:hover{background:rgba(0,194,255,0.1);}
+    .link-btn.primary{background:var(--cyan);color:#080e1c;font-weight:700;border-color:var(--cyan);}
+    .link-btn.primary:hover{background:#33ceff;}
+    /* Roadmap */
+    .roadmap-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+    .roadmap-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+    /* Disclaimer */
+    .disclaimer{background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.18);border-radius:var(--radius);padding:14px 18px;font-size:12px;color:var(--muted);margin-top:24px;line-height:1.7;}
+    .disclaimer strong{color:var(--amber);}
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-thumb{background:var(--border-b);border-radius:3px;}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="javascript:void(0)" onclick="history.length>1?history.back():window.location.href='../index.html'">← Voltar</a>
+  <span class="logo">RespirAlert SC</span>
+</header>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">🫁</div>
+    <h1>RespirAlert SC</h1>
+    <div class="hero-sub">Plataforma Inteligente de Monitoramento Climático e Hospitalar para Apoio à Prevenção de Doenças Respiratórias em Santa Catarina.</div>
+    <div class="hero-tagline">Dados públicos. Análise real. Impacto social.</div>
+  </div>
+
+  <!-- Por que importa -->
+  <div class="card">
+    <div class="card-title">Por que este projeto importa?</div>
+    <div class="quote">
+      "Este projeto transforma dados públicos em conhecimento acessível para apoiar estudos acadêmicos,
+      pesquisas e ações preventivas. A plataforma demonstra como a análise de dados pode auxiliar na
+      compreensão de padrões relacionados à saúde pública e às condições climáticas, fortalecendo
+      o uso de evidências na tomada de decisão."
+    </div>
+    <p style="color:var(--text2);font-size:13px">
+      Santa Catarina concentra municípios com temperaturas médias históricas abaixo de 12°C (São Joaquim,
+      Urupema, Bom Jardim da Serra), associadas a períodos de alta incidência de doenças respiratórias.
+      A análise sistemática da relação entre clima e saúde, utilizando dados públicos do DATASUS e INMET,
+      permite identificar padrões sazonais e municípios de maior vulnerabilidade — informação essencial
+      para planejamento preventivo em saúde pública.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <!-- Contexto acadêmico -->
+    <div class="card">
+      <div class="card-title">Contexto Acadêmico</div>
+      <div style="font-size:13px;color:var(--text2);display:flex;flex-direction:column;gap:10px">
+        <div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px">Instituição</div>
+          <div style="color:var(--text);font-weight:500">UDESC — Universidade do Estado de Santa Catarina</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px">Curso</div>
+          <div style="color:var(--text);font-weight:500">Sistemas de Informação</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px">Objetivo</div>
+          <div style="color:var(--text2)">Demonstração integrada de múltiplas disciplinas aplicadas a um problema real de saúde pública.</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px">Dados</div>
+          <div style="color:var(--text2)">Dados públicos de referência — DATASUS/SIH-SUS, INMET e Open-Meteo. Quando uma coleta oficial falha, o painel informa e mantém o último dataset local válido.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disciplinas integradas -->
+    <div class="card">
+      <div class="card-title">Disciplinas Integradas</div>
+      <div class="disc-grid">
+        <div class="disc-item"><div class="disc-icon">💻</div><div class="disc-name">Sistemas de Informação</div></div>
+        <div class="disc-item"><div class="disc-icon">⚙️</div><div class="disc-name">Engenharia de Software</div></div>
+        <div class="disc-item"><div class="disc-icon">📊</div><div class="disc-name">Análise de Dados</div></div>
+        <div class="disc-item"><div class="disc-icon">🔬</div><div class="disc-name">Ciência de Dados</div></div>
+        <div class="disc-item"><div class="disc-icon">📐</div><div class="disc-name">Estatística</div></div>
+        <div class="disc-item"><div class="disc-icon">📉</div><div class="disc-name">Visualização de Dados</div></div>
+        <div class="disc-item"><div class="disc-icon">🏥</div><div class="disc-name">Saúde Pública</div></div>
+        <div class="disc-item"><div class="disc-icon">🤖</div><div class="disc-name">Automação / CI-CD</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tecnologias -->
+  <div class="card">
+    <div class="card-title">Tecnologias Utilizadas</div>
+    <div class="grid-2">
+      <div>
+        <div class="tech-item"><div class="tech-icon">🐍</div><div><div class="tech-name">Python 3.12</div><div class="tech-desc">Coleta resiliente · Processamento · Estatística · Automação</div></div></div>
+        <div class="tech-item"><div class="tech-icon">🌐</div><div><div class="tech-name">HTML5 / CSS3 / JavaScript ES2022</div><div class="tech-desc">SPA sem framework — zero dependências de runtime</div></div></div>
+        <div class="tech-item"><div class="tech-icon">📊</div><div><div class="tech-name">Chart.js 4</div><div class="tech-desc">Gráficos interativos com tema customizado</div></div></div>
+        <div class="tech-item"><div class="tech-icon">🗺️</div><div><div class="tech-name">Canvas API + GeoJSON</div><div class="tech-desc">Mapa municipal renderizado sem CDN externo</div></div></div>
+      </div>
+      <div>
+        <div class="tech-item"><div class="tech-icon">⚙️</div><div><div class="tech-name">GitHub Actions</div><div class="tech-desc">CI/CD · Atualização mensal automática · Commit bot</div></div></div>
+        <div class="tech-item"><div class="tech-icon">📄</div><div><div class="tech-name">GitHub Pages</div><div class="tech-desc">Hospedagem estática gratuita · Zero backend</div></div></div>
+        <div class="tech-item"><div class="tech-icon">🏥</div><div><div class="tech-name">DATASUS / SIH-SUS</div><div class="tech-desc">Internações hospitalares SC · CID-10 J00–J99</div></div></div>
+        <div class="tech-item"><div class="tech-icon">🌡️</div><div><div class="tech-name">INMET</div><div class="tech-desc">20 estações automáticas SC · Temperatura · Umidade</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diferenciais -->
+  <div class="card">
+    <div class="card-title">Diferenciais Técnicos</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Pipeline resiliente em 3 etapas:</strong> API oficial → download público → último dataset local válido, sempre com status registrado.</div></div>
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Information Value adaptado:</strong> técnica de scorecard de crédito aplicada à saúde pública para medir poder preditivo da temperatura.</div></div>
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Insights automáticos:</strong> interpretações geradas por análise estatística, não texto fixo.</div></div>
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Mapa com Canvas API:</strong> renderização de GeoJSON municipal via canvas sem bibliotecas externas.</div></div>
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Exportação PDF client-side:</strong> jsPDF + html2canvas carregados sob demanda, sem backend.</div></div>
+      <div style="display:flex;gap:12px;font-size:13px"><span style="color:var(--cyan);font-size:16px">✦</span><div style="color:var(--text2)"><strong style="color:var(--text)">Zero banco de dados, zero backend:</strong> 100% estático — JSON + CSV + GitHub Pages.</div></div>
+    </div>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="card">
+    <div class="card-title">Roadmap Futuro</div>
+    <div class="roadmap-item"><div class="roadmap-dot" style="background:var(--green)"></div><div style="font-size:13px;color:var(--text2)">Cobertura dos 295 municípios de Santa Catarina implementada no dataset e no mapa</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot" style="background:var(--green)"></div><div style="font-size:13px;color:var(--text2)">Previsão meteorológica Open-Meteo integrada para alertas baseados em previsão</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot" style="background:var(--muted)"></div><div style="font-size:13px;color:var(--text2)">Análise de outros CIDs (cardiovascular, pediátrico, DPOC)</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot" style="background:var(--green)"></div><div style="font-size:13px;color:var(--text2)">Modelo preditivo com regressão linear múltipla integrado ao painel</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot" style="background:var(--muted)"></div><div style="font-size:13px;color:var(--text2)">PWA para uso offline em campo</div></div>
+    <div class="roadmap-item" style="border:none"><div class="roadmap-dot" style="background:var(--muted)"></div><div style="font-size:13px;color:var(--text2)">Expansão para outros estados do Sul do Brasil</div></div>
+  </div>
+
+  <!-- Links -->
+  <div class="card">
+    <div class="card-title">Links e Fontes</div>
+    <div class="links-row">
+      <a class="link-btn primary" href="javascript:void(0)" onclick="history.length>1?history.back():window.location.href='../index.html'">🚀 Acessar Dashboard</a>
+      <a class="link-btn" href="metodologia.html">📖 Metodologia</a>
+      <a class="link-btn" href="impacto-social.html">🏥 Impacto Social</a>
+      <a class="link-btn" href="https://datasus.saude.gov.br" target="_blank">🏛 DATASUS</a>
+      <a class="link-btn" href="https://portal.inmet.gov.br" target="_blank">🌡 INMET</a>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚠️ Segurança Jurídica e Metodológica:</strong>
+    Este sistema utiliza dados públicos oficiais para fins acadêmicos, científicos e informativos.
+    Os resultados representam associações estatísticas e não estabelecem causalidade.
+    Este sistema não realiza diagnóstico médico e não substitui orientação médica, epidemiológica ou decisões governamentais.
+    Eventuais inconsistências podem decorrer das limitações das bases públicas utilizadas.
+  </div>
+
+</div>
+</body>
+</html>

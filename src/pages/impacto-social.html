@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impacto Social — RespirAlert SC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:#080e1c; --surface:#0d1527; --card:#111d35;
+      --border:rgba(0,194,255,0.12); --border-b:rgba(0,194,255,0.30);
+      --cyan:#00c2ff; --amber:#f59e0b; --green:#10b981;
+      --red:#ef4444; --purple:#8b5cf6;
+      --text:#e8f4fd; --text2:#8bacc8; --muted:#4a6080;
+      --radius:8px; --radius-lg:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
+    .logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--cyan);}
+    .back{color:var(--cyan);text-decoration:none;font-size:13px;border:1px solid var(--border-b);padding:5px 12px;border-radius:var(--radius);transition:.2s;}
+    .back:hover{background:rgba(0,194,255,0.1);}
+    .page{max-width:1200px;margin:0 auto;padding:32px 24px 60px;}
+    h1{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:800;margin-bottom:6px;}
+    .sub{color:var(--muted);font-size:13px;margin-bottom:32px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;}
+    .card-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    @media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+    .chart-box{height:260px;position:relative;}
+    .chart-box-tall{height:320px;position:relative;}
+    /* Alerta */
+    .alert-box{border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px;border:1px solid;}
+    .alert-box.critico{background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.25);}
+    .alert-box.ok{background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.25);}
+    .alert-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px;}
+    .alert-box.critico .alert-title{color:var(--red);}
+    .alert-box.ok .alert-title{color:var(--green);}
+    /* Calendário */
+    .cal-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;}
+    .cal-cell{text-align:center;padding:10px 4px;border-radius:6px;cursor:default;}
+    .cal-num{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;line-height:1;}
+    .cal-label{font-size:9px;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;opacity:.75;}
+    /* Pressão */
+    .pressao-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+    .pressao-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;text-align:center;}
+    .pressao-val{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+    .pressao-label{font-size:11px;color:var(--muted);}
+    /* Compare */
+    .compare-selects{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+    select{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:var(--radius);padding:7px 12px;font-size:13px;font-family:'Inter',sans-serif;outline:none;}
+    select:focus{border-color:var(--cyan);}
+    /* Tabela */
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th{text-align:left;padding:9px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);border-bottom:1px solid var(--border);}
+    td{padding:9px 12px;border-bottom:1px solid rgba(0,194,255,0.04);color:var(--text2);}
+    tr:hover td{background:rgba(0,194,255,0.03);}
+    .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;}
+    .b-baixa{background:rgba(16,185,129,0.15);color:var(--green);}
+    .b-moderada{background:rgba(245,158,11,0.15);color:var(--amber);}
+    .b-alta{background:rgba(239,68,68,0.15);color:var(--red);}
+    .b-muito-alta{background:rgba(139,92,246,0.15);color:var(--purple);}
+    .disclaimer{background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.18);border-radius:var(--radius);padding:12px 16px;font-size:11px;color:var(--muted);margin-top:24px;}
+    .disclaimer strong{color:var(--amber);}
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-thumb{background:var(--border-b);border-radius:3px;}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="javascript:void(0)" onclick="history.length>1?history.back():window.location.href='../index.html'">← Voltar</a>
+  <span class="logo">RespirAlert SC</span>
+  <span style="margin-left:auto;font-size:12px;color:var(--muted)">Painel de Impacto Social</span>
+</header>
+
+<div class="page">
+  <h1>Painel de Impacto Social</h1>
+  <div class="sub">Como a análise de dados públicos pode apoiar a tomada de decisão em saúde pública.</div>
+
+  <!-- Alerta preventivo -->
+  <div class="alert-box" id="alert-preventivo">
+    <div class="alert-title" id="alert-title">Carregando indicador...</div>
+    <div style="font-size:13px;color:var(--text2)" id="alert-texto">Aguarde...</div>
+  </div>
+
+  <!-- Calendário sazonal -->
+  <div class="card">
+    <div class="card-title">📅 Calendário de Sazonalidade Respiratória — SC</div>
+    <div class="cal-grid" id="calendario"></div>
+    <div style="display:flex;gap:20px;margin-top:14px;font-size:11px;color:var(--muted);flex-wrap:wrap;">
+      <span>🔵 Baixa incidência (&lt;30)</span>
+      <span>🟡 Moderada (30–60)</span>
+      <span>🔴 Alta (60–80)</span>
+      <span>⬛ Crítico (&gt;80)</span>
+    </div>
+  </div>
+
+  <!-- Pressão no sistema de saúde -->
+  <div class="card">
+    <div class="card-title">🏥 Indicador de Pressão Potencial no Sistema de Saúde</div>
+    <div class="pressao-grid" id="pressao-grid"></div>
+    <div class="disclaimer" style="margin-top:14px">
+      Este índice é <strong>estritamente educacional e estatístico</strong>.
+      Baseia-se em histórico de internações, temperatura e sazonalidade.
+      Não representa capacidade real do sistema de saúde nem prognóstico clínico.
+    </div>
+  </div>
+
+  <!-- Painel de tendências -->
+  <div class="card">
+    <div class="card-title">📈 Evolução Anual de Internações — SC</div>
+    <div class="chart-box-tall"><canvas id="chart-tendencias"></canvas></div>
+  </div>
+
+  <!-- Sazonalidade comparada por grupo de risco -->
+  <div class="card">
+    <div class="card-title">🌡️ Sazonalidade por Grupo de Risco Climático</div>
+    <div class="grid-2">
+      <div class="chart-box"><canvas id="chart-sazon-baixo"></canvas></div>
+      <div class="chart-box"><canvas id="chart-sazon-alto"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Comparativo -->
+  <div class="card">
+    <div class="card-title">⚖️ Comparativo Municipal</div>
+    <div class="compare-selects">
+      <select id="comp1"></select>
+      <span style="color:var(--muted)">vs</span>
+      <select id="comp2"></select>
+    </div>
+    <div class="grid-2" id="compare-cards"></div>
+    <div class="chart-box-tall" style="margin-top:16px"><canvas id="chart-compare"></canvas></div>
+  </div>
+
+  <!-- Mapa de vulnerabilidade -->
+  <div class="card">
+    <div class="card-title">🎯 Classificação de Vulnerabilidade Climática e Respiratória</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th>Município</th><th>Vulnerabilidade</th><th>Risco</th>
+          <th>Temp. Média</th><th>Intern./Mês</th><th>Correlação</th><th>Pressão SUS</th>
+        </tr></thead>
+        <tbody id="tabela-vulner"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚠️ Aviso:</strong> Dados públicos oficiais para fins acadêmicos e informativos.
+    Os resultados representam associações estatísticas e não estabelecem causalidade.
+    Este sistema não realiza diagnóstico médico nem substitui orientações de saúde pública.
+  </div>
+</div>
+
+<script>
+const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const SAZON_NIVEIS = [15,12,18,25,45,75,95,90,60,30,18,14];
+
+function badgeVulner(v){
+  const m={Baixa:'b-baixa',Moderada:'b-moderada',Alta:'b-alta','Muito Alta':'b-muito-alta'};
+  return `<span class="badge ${m[v]||''}">${v}</span>`;
+}
+function badgeRisco(r){
+  const m={Baixo:'b-baixa',Moderado:'b-moderada',Alto:'b-alta','Muito Alto':'b-muito-alta'};
+  return `<span class="badge ${m[r]||''}">${r}</span>`;
+}
+function badgePressao(p){
+  const m={Baixa:'b-baixa',Moderada:'b-moderada',Alta:'b-alta',Crítica:'b-muito-alta'};
+  return `<span class="badge ${m[p]||''}">${p}</span>`;
+}
+
+function chartOpts(dual=false){
+  const g={color:'rgba(0,194,255,0.06)'};
+  const t={color:'#4a6080',font:{size:11}};
+  const o={responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{display:dual,labels:{color:'#8bacc8',font:{size:11}}},
+      tooltip:{backgroundColor:'rgba(13,21,39,0.95)',borderColor:'rgba(0,194,255,0.3)',borderWidth:1,titleColor:'#e8f4fd',bodyColor:'#8bacc8',padding:10}
+    },
+    scales:{x:{grid:g,ticks:t},y:{grid:g,ticks:t}}
+  };
+  if(dual) o.scales.y2={position:'right',grid:{display:false},ticks:t};
+  return o;
+}
+
+let MUNICIPIOS=[];
+
+async function carregar(){
+  try {
+      const r = await fetch('../../data/indicadores_sc.json');
+    const dados = await r.json();
+    MUNICIPIOS = dados.municipios;
+    renderTudo(dados);
+  } catch(e) {
+    console.error('Erro ao carregar dados:', e);
+  }
+}
+
+function renderTudo(dados){
+  renderAlerta();
+  renderCalendario();
+  renderPressao(dados.municipios);
+  renderTendencias(dados.municipios);
+  renderSazonGrupos(dados.municipios);
+  renderTabelaVulner(dados.municipios);
+  popularSelects(dados.municipios);
+  atualizarComparativo();
+}
+
+function renderAlerta(){
+  const mes = new Date().getMonth();
+  const box   = document.getElementById('alert-preventivo');
+  const title = document.getElementById('alert-title');
+  const texto = document.getElementById('alert-texto');
+  const mNome = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'][mes];
+
+  if(mes>=5 && mes<=7){
+    box.className='alert-box critico';
+    title.textContent='⚠️ Período de Maior Risco Identificado — '+mNome;
+    texto.innerHTML=`Com base em padrões históricos de SC, ${mNome} é um dos meses de maior incidência de internações respiratórias.
+    Municípios serranos como <strong>São Joaquim</strong> e <strong>Lages</strong> registraram historicamente aumento superior a 80% nas internações durante este período.
+    Recomenda-se atenção preventiva especialmente para crianças, idosos e portadores de doenças pulmonares crônicas.`;
+  } else {
+    box.className='alert-box ok';
+    title.textContent='✅ Período de Menor Risco Histórico — '+mNome;
+    texto.innerHTML=`Com base em padrões históricos, ${mNome} apresenta temperaturas mais elevadas em SC, período associado à menor incidência de internações respiratórias.
+    Recomenda-se manutenção do monitoramento preventivo nos municípios de maior altitude e vulnerabilidade.`;
+  }
+}
+
+function renderCalendario(){
+  const cal = document.getElementById('calendario');
+  cal.innerHTML = MESES.map((m,i)=>{
+    const n=SAZON_NIVEIS[i];
+    let bg,cor,emoji;
+    if(n<30){bg='rgba(59,130,246,0.18)';cor='#3b82f6';emoji='🔵';}
+    else if(n<60){bg='rgba(245,158,11,0.18)';cor='var(--amber)';emoji='🟡';}
+    else if(n<80){bg='rgba(239,68,68,0.18)';cor='var(--red)';emoji='🔴';}
+    else{bg='rgba(139,92,246,0.18)';cor='var(--purple)';emoji='⬛';}
+    return `<div class="cal-cell" style="background:${bg};color:${cor}">
+      <div>${emoji}</div>
+      <div class="cal-num">${n}</div>
+      <div class="cal-label">${m}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderPressao(municipios){
+  const grid = document.getElementById('pressao-grid');
+  const ordem = {Crítica:4,Alta:3,Moderada:2,Baixa:1};
+  const sorted = [...municipios].sort((a,b)=>(ordem[b.pressao_sus]||0)-(ordem[a.pressao_sus]||0));
+  const cores = {Crítica:'var(--purple)',Alta:'var(--red)',Moderada:'var(--amber)',Baixa:'var(--green)'};
+  grid.innerHTML = sorted.slice(0,12).map(m=>`
+    <div class="pressao-card">
+      <div class="pressao-val" style="color:${cores[m.pressao_sus]||'var(--muted)'}">${m.pressao_sus||'—'}</div>
+      <div class="pressao-label">${m.municipio_nome}</div>
+    </div>`).join('');
+}
+
+function renderTendencias(municipios){
+  const anos=[...new Set(municipios.flatMap(m => Object.keys(m.variacao_anual || {})))]
+    .filter(a => /^\d{4}$/.test(a))
+    .sort((a,b) => Number(a) - Number(b));
+  const totais=anos.map(a=>{
+    return Math.round(municipios.reduce((s,m)=>{
+      const base=m.total_internacoes/Math.max(1, Object.keys(m.variacao_anual || {}).length + 1);
+      const vari=parseFloat(m.variacao_anual?.[a]||0);
+      return s+base*(1+vari/100);
+    },0));
+  });
+  new Chart(document.getElementById('chart-tendencias'),{
+    type:'line',
+    data:{labels:anos,datasets:[{
+      label:'Internações Anuais Estimadas — SC',
+      data:totais,
+      borderColor:'#00c2ff',backgroundColor:'rgba(0,194,255,0.07)',
+      tension:0.3,fill:true,pointRadius:6,pointBackgroundColor:'#00c2ff',
+    }]},
+    options:{...chartOpts(),plugins:{...chartOpts().plugins,legend:{display:true,labels:{color:'#8bacc8',font:{size:11}}}}},
+  });
+}
+
+function renderSazonGrupos(municipios){
+  const baixo  = municipios.filter(m=>m.classificacao_risco==='Baixo'||m.classificacao_risco==='Moderado');
+  const alto   = municipios.filter(m=>m.classificacao_risco==='Alto'||m.classificacao_risco==='Muito Alto');
+
+  function mediaGrupo(grupo){
+    const soma=Array(12).fill(0);
+    grupo.forEach(m=>{
+      const saz=m.sazonalidade_mensal||{};
+      for(let i=1;i<=12;i++) soma[i-1]+=parseFloat(saz[i]||saz[String(i)]||0);
+    });
+    return soma.map(v=>grupo.length?+(v/grupo.length).toFixed(1):0);
+  }
+
+  const dataBaixo = mediaGrupo(baixo);
+  const dataAlto  = mediaGrupo(alto);
+
+  new Chart(document.getElementById('chart-sazon-baixo'),{
+    type:'bar',data:{labels:MESES,datasets:[{
+      label:'Risco Baixo/Moderado',data:dataBaixo,
+      backgroundColor:dataBaixo.map((_,i)=>i>=5&&i<=7?'rgba(245,158,11,0.7)':'rgba(16,185,129,0.5)'),borderRadius:4
+    }]},
+    options:{...chartOpts(),plugins:{...chartOpts().plugins,
+      legend:{display:true,labels:{color:'#8bacc8',font:{size:11}}}}},
+  });
+
+  new Chart(document.getElementById('chart-sazon-alto'),{
+    type:'bar',data:{labels:MESES,datasets:[{
+      label:'Risco Alto/Muito Alto',data:dataAlto,
+      backgroundColor:dataAlto.map((_,i)=>i>=5&&i<=7?'rgba(239,68,68,0.8)':'rgba(59,130,246,0.5)'),borderRadius:4
+    }]},
+    options:{...chartOpts(),plugins:{...chartOpts().plugins,
+      legend:{display:true,labels:{color:'#8bacc8',font:{size:11}}}}},
+  });
+}
+
+function renderTabelaVulner(municipios){
+  const ordem={Muito Alta:4,Alta:3,Moderada:2,Baixa:1};
+  const sorted=[...municipios].sort((a,b)=>(ordem[b.vulnerabilidade]||0)-(ordem[a.vulnerabilidade]||0));
+  document.getElementById('tabela-vulner').innerHTML=sorted.map(m=>`
+    <tr>
+      <td style="font-weight:500;color:var(--text)">${m.municipio_nome}</td>
+      <td>${badgeVulner(m.vulnerabilidade)}</td>
+      <td>${badgeRisco(m.classificacao_risco)}</td>
+      <td style="font-family:'JetBrains Mono',monospace">${m.temp_media}°C</td>
+      <td style="font-family:'JetBrains Mono',monospace">${m.int_media_mensal?.toFixed(1)}</td>
+      <td style="font-family:'JetBrains Mono',monospace">${m.correlacao_pearson}</td>
+      <td>${badgePressao(m.pressao_sus||'—')}</td>
+    </tr>`).join('');
+}
+
+function popularSelects(municipios){
+  const opts=municipios.map(m=>`<option value="${m.municipio_ibge}">${m.municipio_nome}</option>`).join('');
+  document.getElementById('comp1').innerHTML=opts;
+  document.getElementById('comp2').innerHTML=opts;
+  document.getElementById('comp2').selectedIndex=1;
+  document.getElementById('comp1').addEventListener('change',atualizarComparativo);
+  document.getElementById('comp2').addEventListener('change',atualizarComparativo);
+}
+
+let _chartCompare=null;
+function atualizarComparativo(){
+  const ibge1=document.getElementById('comp1')?.value;
+  const ibge2=document.getElementById('comp2')?.value;
+  const m1=MUNICIPIOS.find(m=>m.municipio_ibge===ibge1);
+  const m2=MUNICIPIOS.find(m=>m.municipio_ibge===ibge2);
+  if(!m1||!m2) return;
+
+  const metricas=[
+    {label:'Total Internações',   fmt:v=>Number(v).toLocaleString('pt-BR'), k:'total_internacoes'},
+    {label:'Temp. Média',          fmt:v=>v+'°C',                            k:'temp_media'},
+    {label:'Correlação (r)',        fmt:v=>v,                                  k:'correlacao_pearson'},
+    {label:'Information Value',     fmt:v=>parseFloat(v).toFixed(2),          k:'information_value'},
+    {label:'Risco',                 fmt:v=>badgeRisco(v),                     k:'classificacao_risco'},
+    {label:'Vulnerabilidade',       fmt:v=>badgeVulner(v),                    k:'vulnerabilidade'},
+    {label:'Pressão SUS',           fmt:v=>badgePressao(v),                   k:'pressao_sus'},
+  ];
+
+  document.getElementById('compare-cards').innerHTML=[m1,m2].map(m=>`
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--cyan);margin-bottom:14px">${m.municipio_nome}</div>
+      ${metricas.map(mt=>`
+        <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px">
+          <span style="color:var(--muted)">${mt.label}</span>
+          <span style="color:var(--text);font-weight:500">${mt.fmt(m[mt.k])}</span>
+        </div>`).join('')}
+    </div>`).join('');
+
+  const saz1=m1.sazonalidade_mensal||{};
+  const saz2=m2.sazonalidade_mensal||{};
+  const d1=Array.from({length:12},(_,i)=>parseFloat(saz1[i+1]||saz1[String(i+1)]||0));
+  const d2=Array.from({length:12},(_,i)=>parseFloat(saz2[i+1]||saz2[String(i+1)]||0));
+
+  if(_chartCompare) _chartCompare.destroy();
+  _chartCompare=new Chart(document.getElementById('chart-compare'),{
+    type:'line',
+    data:{labels:MESES,datasets:[
+      {label:m1.municipio_nome,data:d1,borderColor:'#00c2ff',backgroundColor:'rgba(0,194,255,0.08)',tension:0.4,fill:true},
+      {label:m2.municipio_nome,data:d2,borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.08)',tension:0.4,fill:true},
+    ]},
+    options:{...chartOpts(),plugins:{...chartOpts().plugins,legend:{display:true,labels:{color:'#8bacc8',font:{size:11}}}}},
+  });
+}
+
+carregar();
+</script>
+</body>
+</html>

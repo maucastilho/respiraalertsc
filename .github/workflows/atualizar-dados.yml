@@ -1,0 +1,112 @@
+﻿name: RespirAlert SC â€” AtualizaÃ§Ã£o AutomÃ¡tica de Dados
+
+on:
+  schedule:
+    - cron: "0 3 1 * *"
+  workflow_dispatch:
+
+jobs:
+  atualizar-dados:
+    name: Coletar, Processar e Publicar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar dependÃªncias
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas pysus 2>/dev/null || pip install requests pandas
+          echo "DependÃªncias instaladas"
+
+      - name: Coletar internaÃ§Ãµes DATASUS
+        run: |
+          cd scripts
+          python coleta_datasus.py
+
+      - name: Coletar dados climÃ¡ticos INMET
+        env:
+          INMET_TOKEN: ${{ secrets.INMET_TOKEN }}
+        run: |
+          cd scripts
+          python coleta_inmet.py
+
+      - name: Coletar previsÃ£o meteorolÃ³gica Open-Meteo (7 dias)
+        run: |
+          cd scripts
+          python coleta_previsao.py
+
+      - name: Processar dados e calcular indicadores
+        run: |
+          cd scripts
+          python processa_dados.py
+          python calcula_indicadores.py
+
+      - name: Treinar modelo preditivo
+        run: |
+          cd scripts
+          python modelo_preditivo.py
+
+      - name: Verificar arquivos gerados
+        run: |
+          echo "=== VerificaÃ§Ã£o de integridade ==="
+          for f in data/internacoes_sc.csv data/clima_sc.csv data/dataset_final.csv \
+                   data/indicadores_sc.json data/municipios_sc.json \
+                   data/previsao_sc.json data/modelo_preditivo.json data/status_dados.json; do
+            if [ -f "$f" ]; then
+              linhas=$(wc -l < "$f")
+              echo "âœ… $f â€” $linhas linhas"
+            else
+              echo "âš ï¸  $f â€” NÃƒO ENCONTRADO"
+            fi
+          done
+
+      - name: Commit e push dos dados atualizados
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "RespirAlert Bot"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Nenhuma alteraÃ§Ã£o â€” commit pulado."
+          else
+            DATA_ATUAL=$(date +'%d/%m/%Y %H:%M UTC')
+            git commit -m "chore(data): atualizaÃ§Ã£o automÃ¡tica â€” $DATA_ATUAL
+
+          - internacoes_sc.csv atualizado (DATASUS/SIH-SUS)
+          - clima_sc.csv atualizado (INMET)
+          - previsao_sc.json atualizado (Open-Meteo 7 dias)
+          - modelo_preditivo.json recalculado (regressÃ£o mÃºltipla)
+          - indicadores_sc.json recalculados"
+            git push
+            echo "âœ… Publicado com sucesso!"
+          fi
+
+      - name: Resumo da execuÃ§Ã£o
+        if: always()
+        run: |
+          echo "### ðŸ“Š RespirAlert SC â€” Resumo" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Arquivo | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          for f in data/internacoes_sc.csv data/clima_sc.csv data/dataset_final.csv \
+                   data/indicadores_sc.json data/previsao_sc.json data/modelo_preditivo.json data/status_dados.json; do
+            if [ -f "$f" ]; then
+              echo "| \`$f\` | âœ… OK |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| \`$f\` | âŒ Ausente |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Executado em:** $(date +'%d/%m/%Y Ã s %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+

@@ -1,0 +1,76 @@
+{
+  "fontes": {
+    "DATASUS/SIH-SUS": {
+      "timestamp": "2026-07-05T20:49:37.974507",
+      "fonte": "DATASUS/SIH-SUS",
+      "status": "ultimo_valido",
+      "mensagem": "Dataset local mantido ate nova coleta oficial completa.",
+      "registros": 129505
+    },
+    "INMET": {
+      "timestamp": "2026-07-05T20:49:37.975503",
+      "fonte": "INMET",
+      "status": "ultimo_valido",
+      "mensagem": "Dataset local mantido ate nova coleta oficial completa.",
+      "registros": 129505
+    },
+    "Open-Meteo": {
+      "timestamp": "2026-07-06T02:14:38.419390",
+      "fonte": "Open-Meteo",
+      "status": "oficial_atualizado",
+      "mensagem": "Previsao atualizada a partir da API Open-Meteo.",
+      "registros": 295
+    }
+  },
+  "historico": [
+    {
+      "timestamp": "2026-07-05T20:49:37.974507",
+      "fonte": "DATASUS/SIH-SUS",
+      "status": "ultimo_valido",
+      "mensagem": "Dataset local mantido ate nova coleta oficial completa.",
+      "registros": 129505
+    },
+    {
+      "timestamp": "2026-07-05T20:49:37.975503",
+      "fonte": "INMET",
+      "status": "ultimo_valido",
+      "mensagem": "Dataset local mantido ate nova coleta oficial completa.",
+      "registros": 129505
+    },
+    {
+      "timestamp": "2026-07-05T20:49:37.978033",
+      "fonte": "Open-Meteo",
+      "status": "ultimo_valido",
+      "mensagem": "Previsao local mantida ate nova coleta oficial completa.",
+      "registros": 295
+    },
+    {
+      "timestamp": "2026-07-06T02:05:44.559312",
+      "fonte": "Open-Meteo",
+      "status": "ultimo_valido",
+      "mensagem": "Previsao incompleta (293 municipios). Mantendo ultimo arquivo valido.",
+      "registros": 293
+    },
+    {
+      "timestamp": "2026-07-06T02:09:03.311125",
+      "fonte": "Open-Meteo",
+      "status": "ultimo_valido",
+      "mensagem": "Previsao incompleta (289 municipios). Mantendo ultimo arquivo valido.",
+      "registros": 289
+    },
+    {
+      "timestamp": "2026-07-06T02:12:07.071783",
+      "fonte": "Open-Meteo",
+      "status": "ultimo_valido",
+      "mensagem": "Previsao incompleta (270 municipios). Mantendo ultimo arquivo valido.",
+      "registros": 270
+    },
+    {
+      "timestamp": "2026-07-06T02:14:38.419390",
+      "fonte": "Open-Meteo",
+      "status": "oficial_atualizado",
+      "mensagem": "Previsao atualizada a partir da API Open-Meteo.",
+      "registros": 295
+    }
+  ]
+}

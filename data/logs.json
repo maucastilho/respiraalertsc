@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-07-05T20:34:31.036641",
+    "modulo": "calcula_indicadores",
+    "sucesso": true,
+    "mensagem": "295 municípios processados, 3747645 internações"
+  },
+  {
+    "timestamp": "2026-07-05T20:34:36.251188",
+    "modulo": "modelo_preditivo",
+    "sucesso": true,
+    "mensagem": "295 modelos treinados, R²=0.7405"
+  },
+  {
+    "timestamp": "2026-07-05T20:49:45.283600",
+    "modulo": "calcula_indicadores",
+    "sucesso": true,
+    "mensagem": "295 municípios processados, 3747645 internações"
+  },
+  {
+    "timestamp": "2026-07-05T20:50:21.579855",
+    "modulo": "calcula_indicadores",
+    "sucesso": true,
+    "mensagem": "295 municípios processados, 3747645 internações"
+  },
+  {
+    "timestamp": "2026-07-06T02:14:38.557859",
+    "modulo": "coleta_previsao",
+    "sucesso": true,
+    "mensagem": "295 municipios com previsao de 7 dias"
+  }
+]

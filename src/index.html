@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RespirAlert SC — Monitoramento Climático e Respiratório</title>
+  <meta name="description" content="Plataforma inteligente de monitoramento climático e hospitalar para apoio à prevenção de doenças respiratórias em Santa Catarina.">
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Chart.js Zoom Plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="app-grid">
+
+  <!-- ================================================================
+       TOPBAR
+  ================================================================ -->
+  <header class="topbar">
+    <a class="logo" href="#" onclick="navegarPara('dashboard')">
+      <img src="../assets/logo.svg" class="logo-icon" alt="RespirAlert SC" onerror="this.style.display='none'">
+      <div>
+        <div class="logo-text">RespirAlert SC</div>
+        <div class="logo-sub">Monitoramento Climático e Respiratório</div>
+      </div>
+    </a>
+
+    <div class="topbar-right">
+      <span class="last-update" id="last-update-topbar">Carregando...</span>
+      <button class="btn-icon" onclick="toggleTema()" title="Alternar tema">☀️</button>
+      <button class="btn-icon" onclick="exportarDados()" title="Exportar JSON">⬇ JSON</button>
+      <button class="btn-icon" onclick="exportarPDF()" title="Exportar PDF">📄 PDF</button>
+    </div>
+  </header>
+
+  <!-- ================================================================
+       SIDEBAR
+  ================================================================ -->
+  <nav class="sidebar">
+    <div class="nav-section">
+      <div class="nav-label">Visão Geral</div>
+      <div class="nav-item active" onclick="navegarPara('dashboard')" id="nav-dashboard">
+        <span class="nav-icon">📊</span> Dashboard Executivo
+      </div>
+      <div class="nav-item" onclick="navegarPara('mapa')" id="nav-mapa">
+        <span class="nav-icon">🗺️</span> Mapa Interativo
+      </div>
+      <div class="nav-item" onclick="window.open('pages/municipio.html?ibge=420655')" title="Abrir página de município">
+        <span class="nav-icon">🏙️</span> Página Município ↗
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Análise</div>
+      <div class="nav-item" onclick="navegarPara('temporal')" id="nav-temporal">
+        <span class="nav-icon">📈</span> Análise Temporal
+      </div>
+      <div class="nav-item" onclick="navegarPara('ranking')" id="nav-ranking">
+        <span class="nav-icon">🏆</span> Ranking Municipal
+      </div>
+      <div class="nav-item" onclick="navegarPara('insights')" id="nav-insights">
+        <span class="nav-icon">💡</span> Insights Automáticos
+      </div>
+      <div class="nav-item" onclick="navegarPara('simulador')" id="nav-simulador">
+        <span class="nav-icon">⚠️</span> Simulador de Risco
+      </div>
+      <div class="nav-item" onclick="navegarPara('previsao')" id="nav-previsao">
+        <span class="nav-icon">🌤️</span> Previsão 7 Dias
+      </div>
+      <div class="nav-item" onclick="navegarPara('modelo')" id="nav-modelo">
+        <span class="nav-icon">🔮</span> Modelo Preditivo
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Impacto Social</div>
+      <div class="nav-item" onclick="navegarPara('impacto')" id="nav-impacto">
+        <span class="nav-icon">🏥</span> Painel de Impacto
+      </div>
+      <div class="nav-item" onclick="navegarPara('comparativo')" id="nav-comparativo">
+        <span class="nav-icon">⚖️</span> Comparativo Municipal
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Documentação</div>
+      <div class="nav-item" onclick="navegarPara('metodologia')" id="nav-metodologia">
+        <span class="nav-icon">📖</span> Metodologia
+      </div>
+      <div class="nav-item" onclick="navegarPara('sobre')" id="nav-sobre">
+        <span class="nav-icon">ℹ️</span> Sobre o Projeto
+      </div>
+      <div class="nav-item" onclick="window.open('pages/metodologia.html')" title="Abre em nova aba">
+        <span class="nav-icon">🔗</span> Metodologia ↗
+      </div>
+      <div class="nav-item" onclick="window.open('pages/impacto-social.html')" title="Abre em nova aba">
+        <span class="nav-icon">🔗</span> Impacto Social ↗
+      </div>
+      <div class="nav-item" onclick="window.open('pages/sobre.html')" title="Abre em nova aba">
+        <span class="nav-icon">🔗</span> Sobre ↗
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       MAIN
+  ================================================================ -->
+  <main class="main">
+
+    <!-- ============================================================
+         VIEW: DASHBOARD
+    ============================================================ -->
+    <section class="view active animate-in" id="view-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Dashboard Executivo</div>
+          <div class="page-subtitle">Santa Catarina · Dados oficiais SUS + INMET · 1990–2026</div>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid" id="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Municípios Analisados</div>
+          <div class="kpi-value cyan" id="kpi-municipios">—</div>
+          <div class="kpi-detail">Santa Catarina</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total de Internações</div>
+          <div class="kpi-value" id="kpi-internacoes">—</div>
+          <div class="kpi-detail">CID-10 J00–J99 · 1990–2026</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Temp. Média Estadual</div>
+          <div class="kpi-value amber" id="kpi-temp">—</div>
+          <div class="kpi-detail">Média histórica 1990–2026</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Correlação Média SC</div>
+          <div class="kpi-value" id="kpi-correlacao">—</div>
+          <div class="kpi-detail">Pearson Temp × Internações</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Maior Incidência</div>
+          <div class="kpi-value" style="font-size:18px;padding-top:6px" id="kpi-maior">—</div>
+          <div class="kpi-detail">Município com mais internações</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Menor Incidência</div>
+          <div class="kpi-value green" style="font-size:18px;padding-top:6px" id="kpi-menor">—</div>
+          <div class="kpi-detail">Município com menos internações</div>
+        </div>
+      </div>
+
+      <!-- Gráficos principais -->
+      <div class="chart-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Internações Mensais — SC</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-internacoes-mensal','internacoes_mensais')" title="Exportar PNG">⬇ PNG</button>
+            <span class="card-badge">Estadual</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-internacoes-mensal"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Temperatura vs Internações</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-correlacao','correlacao_scatter')" title="Exportar PNG">⬇ PNG</button>
+            <span class="card-badge">Correlação</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-correlacao"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Sazonalidade Respiratória</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-sazonalidade','sazonalidade')" title="Exportar PNG">⬇ PNG</button>
+            <span class="card-badge">Padrão Mensal</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-sazonalidade"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Distribuição de Risco</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-risco','distribuicao_risco')" title="Exportar PNG">⬇ PNG</button>
+            <span class="card-badge">Por Município</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-risco"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>⚠️ Aviso Metodológico:</strong>
+        Este sistema utiliza dados públicos oficiais para fins acadêmicos, científicos e informativos.
+        Os resultados representam associações estatísticas e não estabelecem causalidade.
+        Este sistema não realiza diagnóstico médico e não substitui orientação médica, epidemiológica ou decisões governamentais.
+        Eventuais inconsistências podem decorrer das limitações das bases públicas utilizadas.
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: MAPA
+    ============================================================ -->
+    <section class="view" id="view-mapa">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Mapa Interativo</div>
+          <div class="page-subtitle">Clique em um município para ver detalhes</div>
+        </div>
+        <select class="filter-select" id="mapa-variavel" onchange="atualizarMapa()">
+          <option value="vulnerabilidade">Vulnerabilidade</option>
+          <option value="risco">Risco Climático</option>
+          <option value="correlacao">Correlação</option>
+          <option value="internacoes">Internações</option>
+        </select>
+      </div>
+
+      <div class="map-layout">
+        <div class="card" style="padding:0;overflow:hidden">
+          <div id="mapa-sc">
+            
+            <canvas id="mapa-canvas-real" style="width:100%;height:100%;display:block"></canvas>
+            <div id="mapa-loading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--text-muted);font-size:13px;text-align:center">
+              <div style="font-size:32px;margin-bottom:8px">🗺️</div>
+              <div>Carregando mapa...</div>
+            </div>
+          </div>
+          <div id="mapa-legenda" style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:16px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text-muted)">LEGENDA:</span>
+            <span style="font-size:11px"><span style="color:var(--green)">●</span> Baixa</span>
+            <span style="font-size:11px"><span style="color:var(--amber)">●</span> Moderada</span>
+            <span style="font-size:11px"><span style="color:var(--red)">●</span> Alta</span>
+            <span style="font-size:11px"><span style="color:var(--purple)">●</span> Muito Alta</span>
+          </div>
+        </div>
+
+        <div class="map-panel" id="painel-municipio">
+          <div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px 0">
+            <div style="font-size:32px;margin-bottom:8px">👆</div>
+            Selecione um município na tabela de ranking para visualizar os detalhes
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini-ranking no mapa -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Municípios — Visão Rápida</div>
+        </div>
+        <div class="table-wrap">
+          <table id="tabela-mapa">
+            <thead>
+              <tr>
+                <th>Município</th>
+                <th>Temp. Média</th>
+                <th>Internações</th>
+                <th>Correlação</th>
+                <th>Vulnerabilidade</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-mapa"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: ANÁLISE TEMPORAL
+    ============================================================ -->
+    <section class="view" id="view-temporal">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Análise Temporal</div>
+          <div class="page-subtitle">Evolução mensal de temperatura e internações</div>
+        </div>
+      </div>
+
+      <div class="filters-row" id="filtros-temporal">
+        <select class="filter-select" id="filter-municipio" onchange="aplicarFiltros()">
+          <option value="TODOS">Todos os Municípios (SC)</option>
+        </select>
+        <select class="filter-select" id="filter-ano" onchange="aplicarFiltros()">
+          <option value="TODOS">Todos os Anos (1990–2026)</option>
+          <option>1990</option>
+          <option>1991</option>
+          <option>1992</option>
+          <option>1993</option>
+          <option>1994</option>
+          <option>1995</option>
+          <option>1996</option>
+          <option>1997</option>
+          <option>1998</option>
+          <option>1999</option>
+          <option>2000</option>
+          <option>2001</option>
+          <option>2002</option>
+          <option>2003</option>
+          <option>2004</option>
+          <option>2005</option>
+          <option>2006</option>
+          <option>2007</option>
+          <option>2008</option>
+          <option>2009</option>
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+          <option>2026</option>
+        </select>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span style="font-size:11px;color:var(--text-muted)">Temp.:</span>
+          <input type="number" class="filter-input" id="filter-temp-min" value="-5" min="-10" max="35" step="0.5"
+                 style="width:68px" onchange="aplicarFiltros()" title="Temperatura mínima (°C)">
+          <span style="color:var(--text-muted)">–</span>
+          <input type="number" class="filter-input" id="filter-temp-max" value="35" min="-10" max="40" step="0.5"
+                 style="width:68px" onchange="aplicarFiltros()" title="Temperatura máxima (°C)">
+          <span style="font-size:11px;color:var(--text-muted)">°C</span>
+          <span class="card-badge" id="filter-temp-label">-5°C – 35°C</span>
+        </div>
+        <button class="btn btn-outline" onclick="exportarGraficoPNG('chart-temporal-main','temporal_principal')">⬇ PNG</button>
+        <button class="btn btn-outline" onclick="exportarPDF()">📄 PDF</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Temperatura Média × Internações Mensais
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-temporal-main','temporal_principal')" title="Exportar PNG">⬇ PNG</button>
+          </div>
+        </div>
+        <div class="chart-container tall">
+          <canvas id="chart-temporal-main"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Distribuição por Mês</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-boxplot-mes','distribuicao_mensal')" title="Exportar PNG">⬇ PNG</button>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-boxplot-mes"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Variação Anual</div>
+            <button class="btn-icon" style="font-size:11px;padding:4px 8px" onclick="exportarGraficoPNG('chart-variacao-anual','variacao_anual')" title="Exportar PNG">⬇ PNG</button>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-variacao-anual"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estatísticas calculadas -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Estatísticas Calculadas</div>
+          <span class="card-badge" id="stats-municipio-label">SC</span>
+        </div>
+        <div class="gauge-grid" id="stats-grid">
+          <!-- populado via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: RANKING
+    ============================================================ -->
+    <section class="view" id="view-ranking">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Ranking Municipal</div>
+          <div class="page-subtitle">Comparação entre municípios analisados</div>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <div class="search-box">
+          <input type="text" class="filter-input" id="search-ranking" placeholder="Buscar município..." oninput="filtrarRanking()">
+        </div>
+        <select class="filter-select" id="filter-risco-ranking" onchange="filtrarRanking()">
+          <option value="TODOS">Todos os riscos</option>
+          <option value="Baixo">Baixo</option>
+          <option value="Moderado">Moderado</option>
+          <option value="Alto">Alto</option>
+          <option value="Muito Alto">Muito Alto</option>
+        </select>
+        <select class="filter-select" id="filter-vulner-ranking" onchange="filtrarRanking()">
+          <option value="TODOS">Toda vulnerabilidade</option>
+          <option value="Baixa">Baixa</option>
+          <option value="Moderada">Moderada</option>
+          <option value="Alta">Alta</option>
+          <option value="Muito Alta">Muito Alta</option>
+        </select>
+        <button class="btn btn-outline" onclick="exportarRankingCSV()">⬇ CSV</button>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="ordenarRanking('rank')">#</th>
+                <th onclick="ordenarRanking('municipio_nome')">Município ↕</th>
+                <th onclick="ordenarRanking('total_internacoes')">Internações ↕</th>
+                <th onclick="ordenarRanking('temp_media')">Temp. Média ↕</th>
+                <th onclick="ordenarRanking('correlacao_pearson')">Correlação ↕</th>
+                <th onclick="ordenarRanking('information_value')">IV ↕</th>
+                <th onclick="ordenarRanking('classificacao_risco')">Risco ↕</th>
+                <th onclick="ordenarRanking('vulnerabilidade')">Vulnerabilidade ↕</th>
+                <th>Estação INMET</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-ranking"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text-muted)" id="ranking-count"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: INSIGHTS
+    ============================================================ -->
+    <section class="view" id="view-insights">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Insights Automáticos</div>
+          <div class="page-subtitle">Interpretações geradas automaticamente por análise estatística</div>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <select class="filter-select" id="filter-municipio-insights" onchange="renderInsights()">
+          <option value="TODOS">Todos os Municípios</option>
+        </select>
+      </div>
+
+      <div id="insights-container"></div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: SIMULADOR
+    ============================================================ -->
+    <section class="view" id="view-simulador">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Simulador de Risco</div>
+          <div class="page-subtitle">Estimativa de risco respiratório por temperatura</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start">
+        <div class="card simulador-card">
+          <div class="card-header">
+            <div class="card-title">Informar Temperatura</div>
+          </div>
+
+          <div class="temp-slider-wrap">
+            <div class="temp-display" id="sim-temp-display">18°C</div>
+            <div class="temp-label">temperatura média (°C)</div>
+            <input type="range" id="sim-slider" min="-5" max="35" value="18" step="0.5"
+                   oninput="atualizarSimulador(this.value)">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:6px">
+              <span>-5°C (muito frio)</span>
+              <span>35°C (muito quente)</span>
+            </div>
+          </div>
+
+          <div class="risco-display" id="sim-risco-box">
+            <div class="risco-nivel" id="sim-risco-nivel">BAIXO</div>
+            <div class="risco-desc" id="sim-risco-desc">Temperaturas acima de 18°C associadas a menor incidência respiratória</div>
+          </div>
+
+          <div class="risco-aviso">
+            ⚠️ Classificação estatística baseada em padrões históricos de SC.
+            Não representa diagnóstico médico. Consulte profissionais de saúde.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Distribuição Histórica</div>
+          </div>
+          <div class="chart-container tall">
+            <canvas id="chart-sim-hist"></canvas>
+          </div>
+          <div style="margin-top:16px">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">FAIXAS DE RISCO CLIMÁTICO:</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <span style="color:var(--green)">● Baixo</span><span style="color:var(--text-muted)">Acima de 18°C</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <span style="color:var(--amber)">● Moderado</span><span style="color:var(--text-muted)">15°C a 18°C</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <span style="color:var(--red)">● Alto</span><span style="color:var(--text-muted)">12°C a 15°C</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <span style="color:var(--purple)">● Muito Alto</span><span style="color:var(--text-muted)">Abaixo de 12°C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: IMPACTO SOCIAL
+    ============================================================ -->
+    <section class="view" id="view-impacto">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Painel de Impacto Social</div>
+          <div class="page-subtitle">Como dados públicos apoiam a saúde pública</div>
+        </div>
+      </div>
+
+      <!-- Alerta preventivo -->
+      <div class="alerta-box" id="impacto-alerta">
+        <div class="alerta-title">🌡️ Indicador de Antecipação de Risco</div>
+        <div style="font-size:13px;color:var(--text-secondary)" id="impacto-alerta-texto">
+          Carregando análise de risco...
+        </div>
+      </div>
+
+      <!-- Calendário sazonal -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Calendário de Sazonalidade Respiratória</div>
+          <span class="card-badge">SC Histórico</span>
+        </div>
+        <div class="calendar-grid" id="calendario-sazonal"></div>
+        <div style="display:flex;gap:20px;margin-top:16px;font-size:11px">
+          <span>🔵 Baixa incidência</span>
+          <span>🟡 Moderada incidência</span>
+          <span>🔴 Alta incidência</span>
+          <span>⬛ Crítico</span>
+        </div>
+      </div>
+
+      <!-- Indicador de pressão no sistema de saúde -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Indicador de Pressão Potencial no Sistema de Saúde</div>
+          <span class="card-badge">Indicador Educacional</span>
+        </div>
+        <div class="gauge-grid" id="pressao-grid"></div>
+        <div class="disclaimer" style="margin-top:16px">
+          Este índice é <strong>estritamente educacional e estatístico</strong>.
+          Baseia-se em histórico de internações, temperatura e sazonalidade.
+          Não representa capacidade real do sistema de saúde nem prognóstico clínico.
+        </div>
+      </div>
+
+      <!-- Painel de tendências -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Painel de Tendências — SC 1990–2026</div>
+        </div>
+        <div class="chart-container tall">
+          <canvas id="chart-tendencias"></canvas>
+        </div>
+      </div>
+
+      <!-- Mapa de vulnerabilidade -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Classificação de Vulnerabilidade Climática e Respiratória</div>
+        </div>
+        <div class="table-wrap">
+          <table id="tabela-vulnerabilidade">
+            <thead>
+              <tr>
+                <th>Município</th>
+                <th>Vulnerabilidade</th>
+                <th>Temp. Média</th>
+                <th>Internações/Mês</th>
+                <th>Correlação</th>
+                <th>Estação INMET</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-vulnerabilidade"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: COMPARATIVO
+    ============================================================ -->
+    <section class="view" id="view-comparativo">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Comparativo Municipal</div>
+          <div class="page-subtitle">Compare dois municípios lado a lado</div>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <select class="filter-select" id="comp-mun1" onchange="atualizarComparativo()">
+        </select>
+        <span style="color:var(--text-muted)">vs</span>
+        <select class="filter-select" id="comp-mun2" onchange="atualizarComparativo()">
+        </select>
+      </div>
+
+      <div class="compare-grid" id="compare-cards"></div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Evolução Mensal Comparada</div>
+        </div>
+        <div class="chart-container tall">
+          <canvas id="chart-comparativo"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: METODOLOGIA
+    ============================================================ -->
+    <section class="view" id="view-metodologia">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Metodologia</div>
+          <div class="page-subtitle">Transparência científica e técnica</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="method-section">
+          <div class="method-title">1. Fontes de Dados</div>
+          <div class="method-text">
+            <strong style="color:var(--text-primary)">DATASUS / SIH-SUS:</strong> Dados de internações hospitalares por doenças respiratórias (CID-10 J00–J99)
+            do Sistema de Informações Hospitalares do SUS para o estado de Santa Catarina, período 1990–2026,
+            agrupados mensalmente por município de residência do paciente.
+            Fonte: <code>tabnet.datasus.gov.br</code> e arquivos DBC via biblioteca pysus.<br><br>
+            <strong style="color:var(--text-primary)">INMET:</strong> Dados meteorológicos das estações automáticas de Santa Catarina,
+            coletados via API pública (<code>apitempo.inmet.gov.br</code>).
+            Variáveis: temperatura média, mínima, máxima, umidade relativa e precipitação.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">2. Associação Município–Estação</div>
+          <div class="method-text">
+            Cada município é associado à estação meteorológica do INMET mais próxima geograficamente,
+            calculado pela fórmula de Haversine (distância geodésica em km):
+            <br><br>
+            <code>d = 2R · arcsin(√[sin²(Δlat/2) + cos(lat₁)·cos(lat₂)·sin²(Δlon/2)])</code>
+            <br><br>
+            Quando o município não possui estação própria, a estação mais próxima é utilizada e
+            a distância é informada nos detalhes do município como indicador de limitação metodológica.
+            SC conta com 20 estações INMET identificadas neste estudo.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">3. Correlação de Pearson</div>
+          <div class="method-text">
+            Mede a associação linear entre temperatura média mensal e quantidade de internações.
+            Calculada para cada município individualmente sobre a série histórica completa disponível.
+            <br><br>
+            <code>r = Σ[(xi − x̄)(yi − ȳ)] / √[Σ(xi − x̄)² · Σ(yi − ȳ)²]</code>
+            <br><br>
+            Correlações negativas indicam que temperaturas menores estão associadas a maior número de internações —
+            padrão típico de doenças respiratórias sazonais.
+            Valores próximos a −1 indicam associação negativa forte; próximos a +1, positiva forte.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">4. Information Value (IV)</div>
+          <div class="method-text">
+            Métrica adaptada do contexto de scorecard de crédito para avaliar o poder preditivo
+            da temperatura sobre as internações. A temperatura é dividida em 4 bins por quartis,
+            e o IV é calculado como: <code>IV = Σ (dist_eventos − dist_não_eventos) × WoE</code>,
+            onde <code>WoE = ln(dist_eventos / dist_não_eventos)</code>.
+            <br><br>
+            Classificação: &lt;0,02 = Negligenciável; 0,02–0,10 = Fraco; 0,10–0,30 = Médio; &gt;0,30 = Forte.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">5. Classificação de Risco e Vulnerabilidade</div>
+          <div class="method-text">
+            <strong style="color:var(--text-primary)">Risco climático</strong> baseado na temperatura média histórica:
+            &ge;18°C = Baixo; 15–18°C = Moderado; 12–15°C = Alto; &lt;12°C = Muito Alto.<br><br>
+            <strong style="color:var(--text-primary)">Vulnerabilidade</strong> combina correlação, IV e temperatura média em score composto (0–6 pontos):
+            &ge;5 = Muito Alta; &ge;3 = Alta; &ge;1 = Moderada; 0 = Baixa.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">6. Limitações</div>
+          <div class="method-text">
+            • Os dados de internação são por município de <em>residência</em>, não de ocorrência, podendo introduzir viés em municípios sem hospital próprio.<br>
+            • A associação de municípios a estações distantes pode reduzir a representatividade climática local.<br>
+            • Correlação não implica causalidade; outros fatores (poluição, densidade populacional, acesso à saúde) influenciam as internações.<br>
+            • O sistema utiliza dados históricos; não realiza previsões meteorológicas.<br>
+            • Municípios pequenos podem apresentar flutuações estatísticas maiores por volume reduzido de internações.
+          </div>
+        </div>
+
+        <div class="method-section">
+          <div class="method-title">7. Atualização Automática</div>
+          <div class="method-text">
+            Os dados são atualizados mensalmente via GitHub Actions (workflow <code>atualizar-dados.yml</code>),
+            que executa os scripts Python de coleta e processamento, realiza commit automático dos arquivos
+            atualizados e publica via GitHub Pages. O fluxo é resiliente com 3 etapas: API oficial → download público → último dataset local válido.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: SOBRE
+    ============================================================ -->
+    <section class="view" id="view-sobre">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Sobre o Projeto</div>
+          <div class="page-subtitle">Contexto acadêmico e social</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--cyan);margin-bottom:6px">
+          Por que este projeto importa?
+        </div>
+        <div style="font-size:15px;color:var(--text-secondary);line-height:1.8;max-width:800px">
+          Este projeto transforma dados públicos em conhecimento acessível para apoiar estudos acadêmicos,
+          pesquisas e ações preventivas. A plataforma demonstra como a análise de dados pode auxiliar na
+          compreensão de padrões relacionados à saúde pública e às condições climáticas, fortalecendo
+          o uso de evidências na tomada de decisão.
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Contexto Acadêmico</div></div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            <p><strong style="color:var(--text-primary)">Curso:</strong> Sistemas de Informação — UDESC</p><br>
+            <p><strong style="color:var(--text-primary)">Objetivo:</strong> Demonstrar integração de múltiplas disciplinas:
+            Sistemas de Informação, Engenharia de Software, Análise e Ciência de Dados, Estatística,
+            Visualização de Dados, Saúde Pública e Automação.</p><br>
+            <p><strong style="color:var(--text-primary)">Diferenciais técnicos:</strong>
+            Coleta resiliente com status explícito das fontes, pipeline de dados automatizado via CI/CD,
+            cálculo de IV adaptado, mapa interativo com GeoJSON municipal, e zero dependência de banco de dados ou backend hospedado.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Tecnologias Utilizadas</div></div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--bg-surface);border-radius:6px">
+              <span style="font-size:18px">🐍</span>
+              <div><strong style="color:var(--text-primary)">Python 3.12</strong><br>
+              <span style="color:var(--text-muted)">Coleta · Processamento · Estatística</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--bg-surface);border-radius:6px">
+              <span style="font-size:18px">🌐</span>
+              <div><strong style="color:var(--text-primary)">HTML / CSS / JavaScript</strong><br>
+              <span style="color:var(--text-muted)">Frontend — sem frameworks</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--bg-surface);border-radius:6px">
+              <span style="font-size:18px">📊</span>
+              <div><strong style="color:var(--text-primary)">Chart.js 4</strong><br>
+              <span style="color:var(--text-muted)">Visualizações interativas</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--bg-surface);border-radius:6px">
+              <span style="font-size:18px">⚙️</span>
+              <div><strong style="color:var(--text-primary)">GitHub Actions</strong><br>
+              <span style="color:var(--text-muted)">CI/CD · Atualização mensal automatizada</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--bg-surface);border-radius:6px">
+              <span style="font-size:18px">🏥</span>
+              <div><strong style="color:var(--text-primary)">DATASUS SIH-SUS + INMET</strong><br>
+              <span style="color:var(--text-muted)">Fontes de dados públicos oficiais</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Segurança Jurídica e Metodológica:</strong>
+        Este sistema utiliza dados públicos oficiais para fins acadêmicos, científicos e informativos.
+        Os resultados representam associações estatísticas e não estabelecem causalidade.
+        Este sistema não realiza diagnóstico médico.
+        Este sistema não substitui orientação médica, epidemiológica ou decisões governamentais.
+        Eventuais inconsistências podem decorrer das limitações das bases públicas utilizadas.
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW: PREVISÃO 7 DIAS (Open-Meteo)
+    ============================================================ -->
+    <section class="view" id="view-previsao">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Previsão Meteorológica — 7 Dias</div>
+          <div class="page-subtitle">Alertas preventivos baseados em previsão climática · Open-Meteo</div>
+        </div>
+        <span class="card-badge" id="previsao-fonte">Carregando...</span>
+      </div>
+
+      <!-- Alerta preventivo baseado em previsão -->
+      <div id="previsao-alerta-box" class="card" style="border-color:var(--border-bright)">
+        <div style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:8px" id="previsao-alerta-title">
+          🌡️ Analisando previsão...
+        </div>
+        <div style="font-size:13px;color:var(--text-secondary)" id="previsao-alerta-texto"></div>
+      </div>
+
+      <!-- Filtro de município -->
+      <div class="filters-row">
+        <select class="filter-select" id="filter-previsao-mun" onchange="renderPrevisaoMunicipio()">
+          <option value="TODOS">Visão Geral — SC</option>
+        </select>
+        <button class="btn btn-outline" onclick="exportarGraficoPNG('chart-previsao-temp','previsao_temperatura')">⬇ PNG</button>
+      </div>
+
+      <!-- Cards dos próximos 7 dias -->
+      <div id="previsao-cards-7dias" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px"></div>
+
+      <!-- Gráfico de temperatura prevista -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Temperatura Prevista — 7 Dias</div>
+          <span class="card-badge" id="previsao-mun-label">SC</span>
+        </div>
+        <div class="chart-container tall"><canvas id="chart-previsao-temp"></canvas></div>
+      </div>
+
+      <!-- Tabela de municípios em alerta -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Municípios em Alerta esta Semana</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Município</th><th>Temp. Média 7d</th><th>Mín. Prevista</th><th>Risco</th><th>Região</th>
+            </tr></thead>
+            <tbody id="tbody-previsao-alerta"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW: MODELO PREDITIVO
+    ============================================================ -->
+    <section class="view" id="view-modelo">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Modelo Preditivo</div>
+          <div class="page-subtitle">Regressão linear múltipla · Projeção de internações para os próximos 12 meses</div>
+        </div>
+      </div>
+
+      <!-- Explicação metodológica -->
+      <div class="card" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.05)">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="font-size:24px">🔮</div>
+          <div>
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--purple);margin-bottom:6px">
+              Regressão Linear Múltipla
+            </div>
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">
+              O modelo combina <strong style="color:var(--text-primary)">temperatura</strong>,
+              <strong style="color:var(--text-primary)">umidade</strong> e
+              <strong style="color:var(--text-primary)">sazonalidade</strong> (via funções seno/cosseno do mês)
+              para estimar internações futuras. Treinado por município sobre a série histórica 1990–2026.
+              <br><br>
+              <strong style="color:var(--amber)">⚠️ As estimativas são projeções estatísticas baseadas em padrões históricos,
+              não previsões epidemiológicas. Não substituem análise profissional.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seletor de município -->
+      <div class="filters-row">
+        <select class="filter-select" id="filter-modelo-mun" onchange="renderModeloMunicipio()">
+        </select>
+        <button class="btn btn-outline" onclick="exportarGraficoPNG('chart-modelo-proj','modelo_projecao')">⬇ PNG</button>
+        <button class="btn btn-outline" onclick="exportarPDF()">📄 PDF</button>
+      </div>
+
+      <!-- KPIs do modelo -->
+      <div class="kpi-grid" id="modelo-kpis"></div>
+
+      <!-- Gráfico de projeção -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Projeção de Internações — Próximos 12 Meses</div>
+          <span class="card-badge" id="modelo-r2-badge">R²=—</span>
+        </div>
+        <div class="chart-container tall"><canvas id="chart-modelo-proj"></canvas></div>
+      </div>
+
+      <!-- Coeficientes do modelo -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Coeficientes do Modelo</div>
+        </div>
+        <div id="modelo-coefs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px"></div>
+      </div>
+
+      <!-- Interpretação -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Interpretação Automática</div>
+        </div>
+        <div id="modelo-interpretacao"></div>
+      </div>
+
+      <!-- Ranking R² dos municípios -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Qualidade dos Modelos por Município (R²)</div>
+        </div>
+        <div class="chart-container"><canvas id="chart-modelo-r2"></canvas></div>
+      </div>
+    </section>
+
+  </main><!-- /main -->
+</div><!-- /app-grid -->
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+
+  <!-- Componentes JS -->
+  <script src="components/graficos.js"></script>
+  <script src="components/dashboard.js"></script>
+  <script src="components/mapa.js"></script>
+  <script src="components/simulador.js"></script>
+  <script src="components/ranking.js"></script>
+  <script src="components/insights.js"></script>
+
+<script src="app.js"></script>
+</body>
+</html>

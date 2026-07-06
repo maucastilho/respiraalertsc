@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RespirAlert SC — Município</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Reset mínimo para página standalone */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-base); color: var(--text-primary); font-family: var(--font-body); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+    :root {
+      --bg-base:#080e1c; --bg-surface:#0d1527; --bg-card:#111d35; --bg-card-hover:#152040;
+      --border:rgba(0,194,255,0.12); --border-bright:rgba(0,194,255,0.30);
+      --cyan:#00c2ff; --cyan-dim:rgba(0,194,255,0.15); --blue:#3b82f6;
+      --amber:#f59e0b; --amber-dim:rgba(245,158,11,0.15);
+      --green:#10b981; --green-dim:rgba(16,185,129,0.15);
+      --red:#ef4444; --red-dim:rgba(239,68,68,0.15); --purple:#8b5cf6;
+      --text-primary:#e8f4fd; --text-secondary:#8bacc8; --text-muted:#4a6080;
+      --font-display:'Barlow Condensed',sans-serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+      --radius:8px; --radius-lg:14px; --transition:all 0.2s ease;
+    }
+    .topbar { background:var(--bg-surface); border-bottom:1px solid var(--border); padding:0 24px; height:60px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:100; }
+    .back-btn { display:flex; align-items:center; gap:8px; color:var(--cyan); text-decoration:none; font-size:13px; font-weight:500; padding:6px 12px; border:1px solid var(--border-bright); border-radius:var(--radius); transition:var(--transition); }
+    .back-btn:hover { background:var(--cyan-dim); }
+    .logo-text { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--cyan); }
+    .page { max-width:1200px; margin:0 auto; padding:28px 24px; }
+    .card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; }
+    .card-title { font-family:var(--font-display); font-size:16px; font-weight:700; margin-bottom:16px; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    @media(max-width:800px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+    .chart-box { height:260px; position:relative; }
+    .kpi-mini { background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:16px; }
+    .kpi-mini-label { font-size:10px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }
+    .kpi-mini-value { font-family:var(--font-display); font-size:28px; font-weight:700; color:var(--text-primary); line-height:1; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:12px; font-weight:600; }
+    .badge-baixo { background:var(--green-dim); color:var(--green); }
+    .badge-moderado { background:var(--amber-dim); color:var(--amber); }
+    .badge-alto { background:var(--red-dim); color:var(--red); }
+    .badge-muito-alto { background:rgba(139,92,246,0.15); color:var(--purple); }
+    .insight-item { display:flex; gap:12px; padding:14px; background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:8px; }
+    .disclaimer { background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.20); border-radius:var(--radius); padding:12px 16px; font-size:11px; color:var(--text-muted); line-height:1.6; margin-top:20px; }
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:3px;}
+    .section-gap { margin-top:20px; }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back-btn" href="javascript:void(0)" onclick="history.length>1?history.back():window.location.href='../index.html'">← Voltar ao Dashboard</a>
+  <span class="logo-text">RespirAlert SC</span>
+  <span style="margin-left:auto;font-size:11px;color:var(--text-muted);font-family:var(--font-mono)" id="mun-subtitle"></span>
+</header>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:var(--font-display);font-size:40px;font-weight:800;color:var(--text-primary)" id="mun-nome">Carregando...</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-top:4px" id="mun-meta"></div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="grid-4" id="kpis-mun" style="margin-bottom:20px"></div>
+
+  <!-- Badges -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;align-items:center">
+    <span style="font-size:12px;color:var(--text-muted)">RISCO:</span>
+    <span id="badge-risco"></span>
+    <span style="font-size:12px;color:var(--text-muted);margin-left:8px">VULNERABILIDADE:</span>
+    <span id="badge-vulner"></span>
+    <span style="font-size:12px;color:var(--text-muted);margin-left:8px">PRESSÃO SUS:</span>
+    <span id="badge-pressao"></span>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="grid-2 section-gap">
+    <div class="card">
+      <div class="card-title">Temperatura × Internações Mensais</div>
+      <div class="chart-box"><canvas id="chart-mun-dual"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Sazonalidade — Internações por Mês</div>
+      <div class="chart-box"><canvas id="chart-mun-saz"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Estatísticas -->
+  <div class="card section-gap">
+    <div class="card-title">Estatísticas Calculadas</div>
+    <div class="grid-4" id="stats-mun"></div>
+  </div>
+
+  <!-- Variação Anual -->
+  <div class="card section-gap">
+    <div class="card-title">Variação Percentual Anual de Internações</div>
+    <div class="chart-box"><canvas id="chart-mun-anual"></canvas></div>
+  </div>
+
+  <!-- Estação INMET -->
+  <div class="card section-gap" id="card-estacao"></div>
+
+  <!-- Insights -->
+  <div class="card section-gap">
+    <div class="card-title">Insights Automáticos</div>
+    <div id="mun-insights"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚠️ Aviso:</strong> Dados públicos oficiais para fins acadêmicos e informativos.
+    Os resultados representam associações estatísticas e não estabelecem causalidade.
+    Este sistema não realiza diagnóstico médico nem substitui orientações profissionais de saúde.
+  </div>
+</div>
+
+<script>
+const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+function badgeRisco(r){
+  const cls={Baixo:'badge-baixo',Moderado:'badge-moderado',Alto:'badge-alto','Muito Alto':'badge-muito-alto'};
+  return `<span class="badge ${cls[r]||''}">${r}</span>`;
+}
+function badgeVulner(v){
+  const cls={Baixa:'badge-baixo',Moderada:'badge-moderado',Alta:'badge-alto','Muito Alta':'badge-muito-alto'};
+  return `<span class="badge ${cls[v]||''}">${v}</span>`;
+}
+function badgePressao(p){
+  const cls={Baixa:'badge-baixo',Moderada:'badge-moderado',Alta:'badge-alto',Crítica:'badge-muito-alto'};
+  return `<span class="badge ${cls[p]||''}">${p}</span>`;
+}
+
+function chartOpts(dual=false){
+  const g={color:'rgba(0,194,255,0.06)'};
+  const t={color:'#4a6080',font:{size:11}};
+  const o={responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:dual,labels:{color:'#8bacc8',font:{size:11}}},
+    tooltip:{backgroundColor:'rgba(13,21,39,0.95)',borderColor:'rgba(0,194,255,0.3)',borderWidth:1,titleColor:'#e8f4fd',bodyColor:'#8bacc8',padding:10}},
+    scales:{x:{grid:g,ticks:t},y:{grid:g,ticks:t}}
+  };
+  if(dual) o.scales.y2={position:'right',grid:{display:false},ticks:t};
+  return o;
+}
+
+async function carregar(){
+  // Pegar IBGE da querystring: ?ibge=420655
+  const params = new URLSearchParams(location.search);
+  const ibge   = params.get('ibge');
+
+  let dados=null, m=null;
+  try {
+      const r = await fetch('../../data/indicadores_sc.json');
+    dados = await r.json();
+  } catch(e) {
+    document.getElementById('mun-nome').textContent = 'Erro ao carregar dados.';
+    return;
+  }
+
+  m = dados.municipios.find(x => x.municipio_ibge === ibge);
+  if(!m){ document.getElementById('mun-nome').textContent = 'Município não encontrado.'; return; }
+
+  // Cabeçalho
+  document.title = m.municipio_nome + ' — RespirAlert SC';
+  document.getElementById('mun-nome').textContent = m.municipio_nome;
+  document.getElementById('mun-subtitle').textContent = 'IBGE: ' + m.municipio_ibge;
+  const anos = Object.keys(m.variacao_anual || {}).map(Number).filter(Boolean).sort((a,b)=>a-b);
+  const periodo = anos.length ? `${anos[0]}–${anos[anos.length-1]}` : 'série histórica disponível';
+  document.getElementById('mun-meta').textContent = `Estação INMET: ${m.estacao_inmet}${m.distancia_estacao_km>0?' ('+m.distancia_estacao_km+'km)':''} · Período: ${periodo}`;
+
+  // Badges
+  document.getElementById('badge-risco').innerHTML   = badgeRisco(m.classificacao_risco);
+  document.getElementById('badge-vulner').innerHTML  = badgeVulner(m.vulnerabilidade);
+  document.getElementById('badge-pressao').innerHTML = badgePressao(m.pressao_sus||'—');
+
+  // KPIs
+  const kpis=[
+    {label:'Total Internações', val:Number(m.total_internacoes).toLocaleString('pt-BR'), cor:'var(--cyan)'},
+    {label:'Temp. Média',       val:m.temp_media+'°C',                                  cor:'var(--amber)'},
+    {label:'Correlação (r)',    val:m.correlacao_pearson,                                cor:m.correlacao_pearson<-0.5?'var(--red)':'var(--cyan)'},
+    {label:'IV',                val:m.information_value?.toFixed(2)+' — '+m.iv_classificacao, cor:'var(--purple)'},
+  ];
+  document.getElementById('kpis-mun').innerHTML = kpis.map(k=>`
+    <div class="kpi-mini">
+      <div class="kpi-mini-label">${k.label}</div>
+      <div class="kpi-mini-value" style="color:${k.cor}">${k.val}</div>
+    </div>`).join('');
+
+  // Estatísticas
+  const stats=[
+    {label:'Média Mensal',    val:Math.round(m.int_media_mensal)+' intern.'},
+    {label:'Mediana',         val:Math.round(m.int_mediana)+' intern.'},
+    {label:'Desvio Padrão',   val:Math.round(m.int_desvio_padrao)+' intern.'},
+    {label:'Temp. Mínima',    val:m.temp_min_historica+'°C'},
+    {label:'Temp. Máxima',    val:m.temp_max_historica+'°C'},
+    {label:'Tendência',       val:m.tendencia_internacoes?.direcao||'—'},
+    {label:'Mês de Pico',     val:MESES[(m.mes_pico||7)-1]},
+    {label:'Municípios em SC',val:dados.total_municipios},
+  ];
+  document.getElementById('stats-mun').innerHTML = stats.map(s=>`
+    <div class="kpi-mini">
+      <div class="kpi-mini-label">${s.label}</div>
+      <div class="kpi-mini-value" style="font-size:18px;padding-top:4px">${s.val}</div>
+    </div>`).join('');
+
+  // Sazonalidade
+  const saz   = m.sazonalidade_mensal || {};
+  const intSaz = Array.from({length:12},(_,i)=>parseFloat(saz[i+1]||saz[String(i+1)]||0));
+
+  // Temperatura mensal (série ou estimativa por sazonalidade)
+  const sazonT  = [1.0,1.0,0.8,0.5,-0.2,-0.8,-1.0,-0.9,-0.4,0.2,0.7,0.9];
+  const tempSaz = m.serie_temp_mensal || sazonT.map(d => parseFloat((m.temp_media + d*4.5).toFixed(1)));
+
+  // Gráfico dual
+  new Chart(document.getElementById('chart-mun-dual'), {
+    type:'line', data:{labels:MESES, datasets:[
+      {label:'Internações',data:intSaz,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,0.08)',tension:0.4,fill:true,yAxisID:'y'},
+      {label:'Temperatura (°C)',data:tempSaz,borderColor:'#f59e0b',backgroundColor:'transparent',tension:0.4,borderDash:[5,3],yAxisID:'y2'},
+    ]},
+    options:chartOpts(true),
+  });
+
+  // Sazonalidade barras
+  new Chart(document.getElementById('chart-mun-saz'), {
+    type:'bar', data:{labels:MESES,datasets:[{
+      label:'Internações',data:intSaz,
+      backgroundColor:intSaz.map((_,i)=>i>=5&&i<=7?'rgba(239,68,68,0.75)':'rgba(0,194,255,0.5)'),
+      borderRadius:4,
+    }]},
+    options:chartOpts(),
+  });
+
+  // Variação anual
+  const vari = m.variacao_anual||{};
+  const anosLabels=Object.keys(vari);
+  const variVals=Object.values(vari);
+  new Chart(document.getElementById('chart-mun-anual'), {
+    type:'bar',data:{labels:anosLabels,datasets:[{
+      label:'Variação %',data:variVals,
+      backgroundColor:variVals.map(v=>v>=0?'rgba(16,185,129,0.7)':'rgba(239,68,68,0.7)'),
+      borderRadius:4,
+    }]},
+    options:{...chartOpts(),plugins:{...chartOpts().plugins,
+      tooltip:{...chartOpts().plugins.tooltip,
+        callbacks:{label:ctx=>`${ctx.raw>0?'+':''}${ctx.raw}%`}}}},
+  });
+
+  // Estação INMET
+  document.getElementById('card-estacao').innerHTML = `
+    <div class="card-title">Estação Meteorológica Utilizada (INMET)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;font-size:13px">
+      <div><div style="color:var(--text-muted);margin-bottom:4px">Nome da Estação</div><div style="color:var(--text-primary);font-weight:600">${m.estacao_inmet}</div></div>
+      <div><div style="color:var(--text-muted);margin-bottom:4px">Distância</div><div style="color:var(--text-primary);font-weight:600">${m.distancia_estacao_km>0?m.distancia_estacao_km+' km':'No município'}</div></div>
+      <div><div style="color:var(--text-muted);margin-bottom:4px">Nota</div><div style="color:var(--text-muted);font-size:11px">${m.distancia_estacao_km>30?'Estação distante — representatividade climática pode ser reduzida.':'Estação próxima — boa representatividade climática.'}</div></div>
+    </div>`;
+
+  // Insights
+  const icons=['📉','❄️','📅','🔬','📊','📈','🌡️','⚠️'];
+  document.getElementById('mun-insights').innerHTML = (m.insights||[]).map((txt,i)=>`
+    <div class="insight-item">
+      <div style="font-size:18px;flex-shrink:0">${icons[i%icons.length]}</div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.5">${txt}</div>
+    </div>`).join('');
+}
+
+carregar();
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metodologia — RespirAlert SC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#080e1c; --surface:#0d1527; --card:#111d35;
+      --border:rgba(0,194,255,0.12); --border-b:rgba(0,194,255,0.30);
+      --cyan:#00c2ff; --amber:#f59e0b; --green:#10b981;
+      --text:#e8f4fd; --text2:#8bacc8; --muted:#4a6080;
+      --radius:8px; --radius-lg:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
+    .logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--cyan);}
+    .back{color:var(--cyan);text-decoration:none;font-size:13px;border:1px solid var(--border-b);padding:5px 12px;border-radius:var(--radius);transition:.2s;}
+    .back:hover{background:rgba(0,194,255,0.1);}
+    .page{max-width:860px;margin:0 auto;padding:40px 24px 60px;}
+    h1{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;margin-bottom:8px;}
+    .sub{color:var(--muted);margin-bottom:40px;font-size:13px;}
+    .section{margin-bottom:36px;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--cyan);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+    p{color:var(--text2);margin-bottom:12px;}
+    code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--surface);border:1px solid var(--border);padding:2px 7px;border-radius:4px;color:var(--cyan);}
+    .formula-box{background:var(--surface);border:1px solid var(--border-b);border-radius:var(--radius-lg);padding:16px 20px;margin:14px 0;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);text-align:center;}
+    table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+    th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);border-bottom:1px solid var(--border);}
+    td{padding:9px 12px;border-bottom:1px solid rgba(0,194,255,0.05);color:var(--text2);}
+    tr:hover td{background:rgba(0,194,255,0.03);}
+    .warn{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--muted);margin-top:32px;}
+    .warn strong{color:var(--amber);}
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-thumb{background:var(--border-b);border-radius:3px;}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="javascript:void(0)" onclick="history.length>1?history.back():window.location.href='../index.html'">← Voltar</a>
+  <span class="logo">RespirAlert SC</span>
+  <span style="margin-left:auto;font-size:12px;color:var(--muted)">Metodologia e Transparência Científica</span>
+</header>
+
+<div class="page">
+  <h1>Metodologia</h1>
+  <div class="sub">Transparência científica e técnica sobre fontes, tratamento e limitações dos dados.</div>
+
+  <div class="section">
+    <div class="section-title">1. Fontes de Dados Oficiais</div>
+    <p><strong style="color:var(--text)">DATASUS / SIH-SUS</strong> — Sistema de Informações Hospitalares do SUS.</p>
+    <p>Coleta de internações hospitalares por doenças do aparelho respiratório (CID-10 J00–J99) para todos os municípios de Santa Catarina, na série histórica disponível no dataset atual, agrupadas mensalmente por município de residência do paciente. Acesso via <code>tabnet.datasus.gov.br</code> e arquivos DBC via biblioteca <code>pysus</code>.</p>
+    <p><strong style="color:var(--text)">INMET</strong> — Instituto Nacional de Meteorologia.</p>
+    <p>Dados meteorológicos das estações automáticas de SC: temperatura média, mínima, máxima, umidade relativa e precipitação. Acesso via API pública <code>apitempo.inmet.gov.br</code>. Total de 20 estações automáticas identificadas em SC.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2. Associação Município–Estação INMET</div>
+    <p>Cada município é associado à estação INMET mais próxima geograficamente pela fórmula de <strong style="color:var(--text)">Haversine</strong> (distância geodésica em km):</p>
+    <div class="formula-box">d = 2R · arcsin(√[ sin²(Δlat/2) + cos(lat₁)·cos(lat₂)·sin²(Δlon/2) ])</div>
+    <p>O <strong style="color:var(--text)">uso da estação mais próxima</strong> é informado nos detalhes de cada município. Municípios sem estação própria utilizam a estação mais próxima disponível. A distância é reportada nos detalhes do município como indicador de limitação metodológica. Municípios com estação a mais de 50km têm representatividade climática reduzida.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3. Correlação de Pearson</div>
+    <p>Mede a força e direção da associação linear entre temperatura média mensal e quantidade de internações por município, calculada sobre a série histórica completa disponível no dataset.</p>
+    <div class="formula-box">r = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / √[ Σ(xᵢ − x̄)² · Σ(yᵢ − ȳ)² ]</div>
+    <p>Correlações negativas indicam que temperaturas menores estão associadas a maior número de internações — padrão típico de doenças respiratórias sazonais no Sul do Brasil. Valores próximos a −1 indicam associação negativa forte.</p>
+    <table>
+      <thead><tr><th>Faixa de r</th><th>Interpretação</th></tr></thead>
+      <tbody>
+        <tr><td>−1,00 a −0,70</td><td>Associação negativa forte</td></tr>
+        <tr><td>−0,70 a −0,40</td><td>Associação negativa moderada</td></tr>
+        <tr><td>−0,40 a +0,40</td><td>Associação fraca ou nula</td></tr>
+        <tr><td>+0,40 a +1,00</td><td>Associação positiva moderada a forte</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">4. Information Value (IV)</div>
+    <p>Métrica adaptada do contexto de scorecard de crédito (Weight of Evidence) para avaliar o poder preditivo da temperatura sobre as internações. A temperatura é dividida em 4 bins pelos quartis (Q1, Q2, Q3) da distribuição histórica de cada município.</p>
+    <div class="formula-box">IV = Σ (Dist_Eventos − Dist_Não_Eventos) × WoE &nbsp;|&nbsp; WoE = ln(Dist_Eventos / Dist_Não_Eventos)</div>
+    <p>Onde "Eventos" são meses com internações acima da mediana histórica e "Não Eventos" abaixo.</p>
+    <table>
+      <thead><tr><th>IV</th><th>Poder preditivo</th></tr></thead>
+      <tbody>
+        <tr><td>&lt; 0,02</td><td>Negligenciável</td></tr>
+        <tr><td>0,02 – 0,10</td><td>Fraco</td></tr>
+        <tr><td>0,10 – 0,30</td><td>Médio</td></tr>
+        <tr><td>&gt; 0,30</td><td>Forte</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">5. Estatísticas Descritivas</div>
+    <p><strong style="color:var(--text)">Média:</strong> média aritmética das internações mensais no período.</p>
+    <p><strong style="color:var(--text)">Mediana:</strong> valor central da distribuição de internações mensais.</p>
+    <p><strong style="color:var(--text)">Desvio padrão:</strong> dispersão das internações mensais em torno da média.</p>
+    <p><strong style="color:var(--text)">Tendência temporal:</strong> coeficiente angular de regressão linear simples sobre a série cronológica de internações mensais. Positivo = tendência de crescimento; negativo = redução.</p>
+    <p><strong style="color:var(--text)">Variação percentual anual:</strong> comparação entre o total de internações de anos consecutivos.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">6. Classificação de Risco Climático</div>
+    <p>Baseada na temperatura média histórica do município, com faixas calibradas pela distribuição empírica de Santa Catarina:</p>
+    <table>
+      <thead><tr><th>Temperatura Média</th><th>Classificação</th></tr></thead>
+      <tbody>
+        <tr><td>≥ 18°C</td><td>Baixo</td></tr>
+        <tr><td>15°C – 18°C</td><td>Moderado</td></tr>
+        <tr><td>12°C – 15°C</td><td>Alto</td></tr>
+        <tr><td>&lt; 12°C</td><td>Muito Alto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">7. Índice de Vulnerabilidade</div>
+    <p>Score composto (0–6 pontos) combinando correlação, IV e temperatura:</p>
+    <table>
+      <thead><tr><th>Critério</th><th>Pontuação</th></tr></thead>
+      <tbody>
+        <tr><td>Correlação &lt; −0,50</td><td>+2</td></tr>
+        <tr><td>Correlação −0,30 a −0,50</td><td>+1</td></tr>
+        <tr><td>IV &gt; 0,30</td><td>+2</td></tr>
+        <tr><td>IV 0,10 a 0,30</td><td>+1</td></tr>
+        <tr><td>Temperatura média &lt; 14°C</td><td>+2</td></tr>
+        <tr><td>Temperatura média 14°C – 18°C</td><td>+1</td></tr>
+      </tbody>
+    </table>
+    <p>Resultado: ≥ 5 = Muito Alta; ≥ 3 = Alta; ≥ 1 = Moderada; 0 = Baixa.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">8. Mecanismo de Coleta Resiliente</div>
+    <p>O pipeline Python implementa coleta resiliente e registra explicitamente quando uma fonte oficial não retorna uma atualização completa:</p>
+    <p><strong style="color:var(--text)">Etapa 1:</strong> API oficial (TabNet DATASUS / API INMET REST).</p>
+    <p><strong style="color:var(--text)">Etapa 2:</strong> Download de arquivos públicos (DBC via <code>pysus</code> / BDMEP).</p>
+    <p><strong style="color:var(--text)">Etapa 3:</strong> manutenção do último dataset local válido, sem sobrescrever os dados quando a coleta vem incompleta.</p>
+    <p>Toda execução é registrada em <code>data/status_dados.json</code> e <code>data/logs.json</code> com timestamp, fonte utilizada, status e número de registros coletados.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">9. Automação — GitHub Actions</div>
+    <p>O workflow <code>.github/workflows/atualizar-dados.yml</code> executa automaticamente no primeiro dia de cada mês (03:00 UTC). Realiza a coleta, processamento, commit automático e publicação via GitHub Pages. Execução manual disponível pelo painel do GitHub Actions.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">10. Limitações do Estudo</div>
+    <p>• Dados de internação por município de <em>residência</em>, não de ocorrência — pode introduzir viés em municípios sem hospital próprio.</p>
+    <p>• Associação de municípios a estações distantes pode reduzir a representatividade climática local.</p>
+    <p>• Correlação não implica causalidade; outros fatores (poluição, densidade, acesso à saúde) influenciam as internações.</p>
+    <p>• O sistema utiliza dados históricos; não realiza previsões meteorológicas.</p>
+    <p>• Municípios pequenos podem apresentar maior variância estatística por volume reduzido de internações.</p>
+    <p>• A disponibilidade das APIs públicas pode variar entre execuções.</p>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Segurança Jurídica e Metodológica:</strong>
+    Este sistema utiliza dados públicos oficiais para fins acadêmicos, científicos e informativos.
+    Os resultados representam associações estatísticas e não estabelecem causalidade.
+    Este sistema não realiza diagnóstico médico e não substitui orientação médica, epidemiológica ou decisões governamentais.
+    Eventuais inconsistências podem decorrer das limitações das bases públicas utilizadas.
+  </div>
+</div>
+</body>
+</html>

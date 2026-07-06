@@ -1,0 +1,2073 @@
+[
+  {
+    "ibge": "420005",
+    "nome": "Abdon Batista",
+    "lat": -27.619,
+    "lon": -51.026,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420010",
+    "nome": "Abelardo Luz",
+    "lat": -26.557,
+    "lon": -52.322,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420020",
+    "nome": "Agrolândia",
+    "lat": -27.377,
+    "lon": -49.823,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420025",
+    "nome": "Agronômica",
+    "lat": -27.253,
+    "lon": -49.825,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420060",
+    "nome": "Alfredo Wagner",
+    "lat": -27.697,
+    "lon": -49.343,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420065",
+    "nome": "Alto Bela Vista",
+    "lat": -27.391,
+    "lon": -51.98,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420070",
+    "nome": "Anchieta",
+    "lat": -26.534,
+    "lon": -53.329,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420075",
+    "nome": "Angelina",
+    "lat": -27.57,
+    "lon": -49.0,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420080",
+    "nome": "Anita Garibaldi",
+    "lat": -27.692,
+    "lon": -51.13,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420085",
+    "nome": "Anitápolis",
+    "lat": -27.914,
+    "lon": -49.126,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420090",
+    "nome": "Antônio Carlos",
+    "lat": -27.531,
+    "lon": -48.747,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420095",
+    "nome": "Apiúna",
+    "lat": -27.037,
+    "lon": -49.389,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420097",
+    "nome": "Arabutã",
+    "lat": -27.164,
+    "lon": -51.961,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420100",
+    "nome": "Araquari",
+    "lat": -26.371,
+    "lon": -48.724,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420105",
+    "nome": "Araranguá",
+    "lat": -28.933,
+    "lon": -49.488,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420110",
+    "nome": "Armazém",
+    "lat": -28.248,
+    "lon": -49.009,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420115",
+    "nome": "Arroio Trinta",
+    "lat": -26.933,
+    "lon": -51.349,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420117",
+    "nome": "Arvoredo",
+    "lat": -27.055,
+    "lon": -52.046,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420120",
+    "nome": "Ascurra",
+    "lat": -26.973,
+    "lon": -49.362,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420125",
+    "nome": "Atalanta",
+    "lat": -27.406,
+    "lon": -49.711,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420130",
+    "nome": "Aurora",
+    "lat": -27.296,
+    "lon": -49.636,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420132",
+    "nome": "Balneário Arroio do Silva",
+    "lat": -28.985,
+    "lon": -49.4,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "4202057",
+    "nome": "Balneário Barra do Sul",
+    "lat": -26.4597,
+    "lon": -48.6123,
+    "regiao": "Norte Catarinense",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "420135",
+    "nome": "Balneário Camboriú",
+    "lat": -26.99,
+    "lon": -48.634,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420140",
+    "nome": "Balneário Gaivota",
+    "lat": -29.123,
+    "lon": -49.568,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "4212809",
+    "nome": "Balneário Piçarras",
+    "lat": -26.7639,
+    "lon": -48.6717,
+    "regiao": "Vale do Itajaí",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "4220000",
+    "nome": "Balneário Rincão",
+    "lat": -28.8314,
+    "lon": -49.2352,
+    "regiao": "Sul Catarinense",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "420145",
+    "nome": "Bandeirante",
+    "lat": -26.587,
+    "lon": -53.627,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420150",
+    "nome": "Barra Bonita",
+    "lat": -26.556,
+    "lon": -53.422,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420155",
+    "nome": "Barra Velha",
+    "lat": -26.632,
+    "lon": -48.683,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420160",
+    "nome": "Bela Vista do Toldo",
+    "lat": -26.075,
+    "lon": -50.487,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420165",
+    "nome": "Belmonte",
+    "lat": -26.518,
+    "lon": -53.642,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420170",
+    "nome": "Benedito Novo",
+    "lat": -26.777,
+    "lon": -49.367,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420175",
+    "nome": "Biguaçu",
+    "lat": -27.495,
+    "lon": -48.656,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420180",
+    "nome": "Blumenau",
+    "lat": -26.92,
+    "lon": -49.066,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420185",
+    "nome": "Bocaina do Sul",
+    "lat": -27.748,
+    "lon": -49.946,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420190",
+    "nome": "Bom Jardim da Serra",
+    "lat": -28.332,
+    "lon": -49.629,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420195",
+    "nome": "Bom Jesus",
+    "lat": -26.741,
+    "lon": -52.396,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420200",
+    "nome": "Bom Jesus do Oeste",
+    "lat": -26.693,
+    "lon": -53.072,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420205",
+    "nome": "Bom Retiro",
+    "lat": -27.799,
+    "lon": -49.49,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420207",
+    "nome": "Bombinhas",
+    "lat": -27.142,
+    "lon": -48.517,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420210",
+    "nome": "Botuverá",
+    "lat": -27.229,
+    "lon": -49.074,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420215",
+    "nome": "Braço do Norte",
+    "lat": -28.275,
+    "lon": -49.168,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420220",
+    "nome": "Braço do Trombudo",
+    "lat": -27.319,
+    "lon": -49.879,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420225",
+    "nome": "Brunópolis",
+    "lat": -27.298,
+    "lon": -51.073,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420230",
+    "nome": "Brusque",
+    "lat": -27.098,
+    "lon": -48.915,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420240",
+    "nome": "Caibi",
+    "lat": -27.064,
+    "lon": -53.251,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420245",
+    "nome": "Calmon",
+    "lat": -26.552,
+    "lon": -51.073,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420250",
+    "nome": "Camboriú",
+    "lat": -27.021,
+    "lon": -48.652,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420255",
+    "nome": "Campo Alegre",
+    "lat": -26.207,
+    "lon": -49.259,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420260",
+    "nome": "Campo Belo do Sul",
+    "lat": -27.899,
+    "lon": -50.758,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420265",
+    "nome": "Campo Erê",
+    "lat": -26.393,
+    "lon": -53.085,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420270",
+    "nome": "Campos Novos",
+    "lat": -27.402,
+    "lon": -51.213,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420275",
+    "nome": "Canelinha",
+    "lat": -27.268,
+    "lon": -48.757,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420280",
+    "nome": "Canoinhas",
+    "lat": -26.176,
+    "lon": -50.389,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420285",
+    "nome": "Capinzal",
+    "lat": -27.339,
+    "lon": -51.613,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420290",
+    "nome": "Capivari de Baixo",
+    "lat": -28.453,
+    "lon": -48.957,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "4203253",
+    "nome": "Capão Alto",
+    "lat": -27.9389,
+    "lon": -50.5097,
+    "regiao": "Serrana",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "420295",
+    "nome": "Catanduvas",
+    "lat": -27.071,
+    "lon": -51.659,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420300",
+    "nome": "Caxambu do Sul",
+    "lat": -27.143,
+    "lon": -52.884,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420235",
+    "nome": "Caçador",
+    "lat": -26.774,
+    "lon": -51.015,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420305",
+    "nome": "Celso Ramos",
+    "lat": -27.636,
+    "lon": -51.33,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420308",
+    "nome": "Cerro Negro",
+    "lat": -27.78,
+    "lon": -51.031,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420310",
+    "nome": "Chapadão do Lageado",
+    "lat": -27.588,
+    "lon": -49.738,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420315",
+    "nome": "Chapecó",
+    "lat": -27.101,
+    "lon": -52.619,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420320",
+    "nome": "Cocal do Sul",
+    "lat": -28.603,
+    "lon": -49.335,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420325",
+    "nome": "Concórdia",
+    "lat": -27.233,
+    "lon": -52.017,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420330",
+    "nome": "Cordilheira Alta",
+    "lat": -27.175,
+    "lon": -52.688,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420335",
+    "nome": "Coronel Freitas",
+    "lat": -26.9,
+    "lon": -52.705,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420340",
+    "nome": "Coronel Martins",
+    "lat": -26.565,
+    "lon": -52.722,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420350",
+    "nome": "Correia Pinto",
+    "lat": -27.589,
+    "lon": -50.363,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420345",
+    "nome": "Corupá",
+    "lat": -26.426,
+    "lon": -49.23,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420355",
+    "nome": "Criciúma",
+    "lat": -28.678,
+    "lon": -49.37,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420360",
+    "nome": "Cunha Porã",
+    "lat": -26.893,
+    "lon": -53.158,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420365",
+    "nome": "Cunhataí",
+    "lat": -27.047,
+    "lon": -53.094,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420370",
+    "nome": "Curitibanos",
+    "lat": -27.285,
+    "lon": -50.595,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420375",
+    "nome": "Descanso",
+    "lat": -26.826,
+    "lon": -53.503,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420380",
+    "nome": "Dionísio Cerqueira",
+    "lat": -26.262,
+    "lon": -53.637,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420385",
+    "nome": "Dona Emma",
+    "lat": -26.998,
+    "lon": -49.699,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420390",
+    "nome": "Doutor Pedrinho",
+    "lat": -26.741,
+    "lon": -49.484,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420395",
+    "nome": "Entre Rios",
+    "lat": -26.742,
+    "lon": -52.573,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420398",
+    "nome": "Ermo",
+    "lat": -28.985,
+    "lon": -49.636,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420400",
+    "nome": "Erval Velho",
+    "lat": -27.28,
+    "lon": -51.437,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420405",
+    "nome": "Faxinal dos Guedes",
+    "lat": -26.851,
+    "lon": -52.258,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420407",
+    "nome": "Flor do Sertão",
+    "lat": -26.713,
+    "lon": -53.395,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420410",
+    "nome": "Florianópolis",
+    "lat": -27.595,
+    "lon": -48.548,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420415",
+    "nome": "Formosa do Sul",
+    "lat": -26.653,
+    "lon": -52.787,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420420",
+    "nome": "Forquilhinha",
+    "lat": -28.742,
+    "lon": -49.468,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420425",
+    "nome": "Fraiburgo",
+    "lat": -27.026,
+    "lon": -51.0,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420427",
+    "nome": "Frei Rogério",
+    "lat": -27.173,
+    "lon": -51.021,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420430",
+    "nome": "Galvão",
+    "lat": -26.439,
+    "lon": -52.64,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420435",
+    "nome": "Garopaba",
+    "lat": -28.024,
+    "lon": -48.615,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420440",
+    "nome": "Garuva",
+    "lat": -26.028,
+    "lon": -48.85,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420445",
+    "nome": "Gaspar",
+    "lat": -26.931,
+    "lon": -48.958,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420450",
+    "nome": "Governador Celso Ramos",
+    "lat": -27.316,
+    "lon": -48.561,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420460",
+    "nome": "Gravatal",
+    "lat": -28.327,
+    "lon": -49.065,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420455",
+    "nome": "Grão Pará",
+    "lat": -28.188,
+    "lon": -49.227,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420465",
+    "nome": "Guabiruba",
+    "lat": -27.059,
+    "lon": -48.98,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420470",
+    "nome": "Guaraciaba",
+    "lat": -26.601,
+    "lon": -53.522,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420475",
+    "nome": "Guaramirim",
+    "lat": -26.471,
+    "lon": -49.003,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420480",
+    "nome": "Guarujá do Sul",
+    "lat": -26.385,
+    "lon": -53.635,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420482",
+    "nome": "Guatambú",
+    "lat": -27.091,
+    "lon": -52.797,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420485",
+    "nome": "Herval d'Oeste",
+    "lat": -27.189,
+    "lon": -51.487,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420490",
+    "nome": "Ibiam",
+    "lat": -27.222,
+    "lon": -51.338,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420495",
+    "nome": "Ibicaré",
+    "lat": -27.089,
+    "lon": -51.318,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420500",
+    "nome": "Ibirama",
+    "lat": -27.055,
+    "lon": -49.521,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420510",
+    "nome": "Ilhota",
+    "lat": -26.899,
+    "lon": -48.824,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420515",
+    "nome": "Imaruí",
+    "lat": -28.337,
+    "lon": -48.813,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420520",
+    "nome": "Imbituba",
+    "lat": -28.239,
+    "lon": -48.669,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420525",
+    "nome": "Imbuia",
+    "lat": -27.49,
+    "lon": -49.415,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420530",
+    "nome": "Indaial",
+    "lat": -26.897,
+    "lon": -49.232,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420535",
+    "nome": "Iomerê",
+    "lat": -26.999,
+    "lon": -51.248,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420540",
+    "nome": "Ipira",
+    "lat": -27.4,
+    "lon": -51.797,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420545",
+    "nome": "Iporã do Oeste",
+    "lat": -26.996,
+    "lon": -53.601,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420550",
+    "nome": "Ipuaçu",
+    "lat": -26.629,
+    "lon": -52.455,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420555",
+    "nome": "Ipumirim",
+    "lat": -27.089,
+    "lon": -51.965,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420557",
+    "nome": "Iraceminha",
+    "lat": -26.812,
+    "lon": -53.277,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420560",
+    "nome": "Irani",
+    "lat": -27.027,
+    "lon": -51.89,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420562",
+    "nome": "Irati",
+    "lat": -26.52,
+    "lon": -52.908,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420565",
+    "nome": "Irineópolis",
+    "lat": -26.226,
+    "lon": -50.799,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420575",
+    "nome": "Itaiópolis",
+    "lat": -26.337,
+    "lon": -49.907,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420580",
+    "nome": "Itajaí",
+    "lat": -26.901,
+    "lon": -48.663,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420585",
+    "nome": "Itapema",
+    "lat": -27.086,
+    "lon": -48.621,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420590",
+    "nome": "Itapiranga",
+    "lat": -27.165,
+    "lon": -53.711,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420595",
+    "nome": "Itapoá",
+    "lat": -26.117,
+    "lon": -48.615,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420600",
+    "nome": "Ituporanga",
+    "lat": -27.407,
+    "lon": -49.598,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420570",
+    "nome": "Itá",
+    "lat": -27.287,
+    "lon": -52.323,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420505",
+    "nome": "Içara",
+    "lat": -28.714,
+    "lon": -49.305,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420605",
+    "nome": "Jaborá",
+    "lat": -27.176,
+    "lon": -51.738,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420610",
+    "nome": "Jacinto Machado",
+    "lat": -28.992,
+    "lon": -49.762,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420615",
+    "nome": "Jaguaruna",
+    "lat": -28.615,
+    "lon": -49.026,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420620",
+    "nome": "Jaraguá do Sul",
+    "lat": -26.485,
+    "lon": -49.071,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420625",
+    "nome": "Jardinópolis",
+    "lat": -26.71,
+    "lon": -52.633,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420630",
+    "nome": "Joaçaba",
+    "lat": -27.174,
+    "lon": -51.505,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420635",
+    "nome": "Joinville",
+    "lat": -26.304,
+    "lon": -48.846,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420640",
+    "nome": "José Boiteux",
+    "lat": -26.946,
+    "lon": -49.636,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420645",
+    "nome": "Jupiá",
+    "lat": -26.396,
+    "lon": -52.686,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420650",
+    "nome": "Lacerdópolis",
+    "lat": -27.262,
+    "lon": -51.559,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420655",
+    "nome": "Lages",
+    "lat": -27.817,
+    "lon": -50.329,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420660",
+    "nome": "Laguna",
+    "lat": -28.484,
+    "lon": -48.784,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420665",
+    "nome": "Lajeado Grande",
+    "lat": -26.836,
+    "lon": -52.462,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420670",
+    "nome": "Laurentino",
+    "lat": -27.222,
+    "lon": -49.744,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420675",
+    "nome": "Lauro Müller",
+    "lat": -28.391,
+    "lon": -49.401,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420680",
+    "nome": "Lebon Régis",
+    "lat": -26.929,
+    "lon": -50.69,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420685",
+    "nome": "Leoberto Leal",
+    "lat": -27.621,
+    "lon": -49.123,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420687",
+    "nome": "Lindóia do Sul",
+    "lat": -27.055,
+    "lon": -52.013,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420690",
+    "nome": "Lontras",
+    "lat": -27.162,
+    "lon": -49.54,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420695",
+    "nome": "Luiz Alves",
+    "lat": -26.717,
+    "lon": -48.933,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420697",
+    "nome": "Luzerna",
+    "lat": -27.133,
+    "lon": -51.467,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420700",
+    "nome": "Macieira",
+    "lat": -26.87,
+    "lon": -51.396,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420705",
+    "nome": "Mafra",
+    "lat": -26.114,
+    "lon": -49.806,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420710",
+    "nome": "Major Gercino",
+    "lat": -27.453,
+    "lon": -48.96,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420715",
+    "nome": "Major Vieira",
+    "lat": -26.364,
+    "lon": -50.326,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420720",
+    "nome": "Maracajá",
+    "lat": -28.835,
+    "lon": -49.447,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420725",
+    "nome": "Maravilha",
+    "lat": -26.771,
+    "lon": -53.181,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420730",
+    "nome": "Marema",
+    "lat": -26.809,
+    "lon": -52.582,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420735",
+    "nome": "Massaranduba",
+    "lat": -26.608,
+    "lon": -49.008,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420740",
+    "nome": "Matos Costa",
+    "lat": -26.469,
+    "lon": -51.15,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420745",
+    "nome": "Meleiro",
+    "lat": -28.84,
+    "lon": -49.635,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420747",
+    "nome": "Mirim Doce",
+    "lat": -27.144,
+    "lon": -49.993,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420750",
+    "nome": "Modelo",
+    "lat": -26.778,
+    "lon": -53.044,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420755",
+    "nome": "Mondaí",
+    "lat": -27.104,
+    "lon": -53.406,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420760",
+    "nome": "Monte Carlo",
+    "lat": -27.226,
+    "lon": -51.498,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420765",
+    "nome": "Monte Castelo",
+    "lat": -26.457,
+    "lon": -50.227,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "420775",
+    "nome": "Morro Grande",
+    "lat": -28.924,
+    "lon": -49.719,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420770",
+    "nome": "Morro da Fumaça",
+    "lat": -28.659,
+    "lon": -49.213,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420780",
+    "nome": "Navegantes",
+    "lat": -26.895,
+    "lon": -48.653,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420785",
+    "nome": "Nova Erechim",
+    "lat": -26.902,
+    "lon": -52.905,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420788",
+    "nome": "Nova Itaberaba",
+    "lat": -26.985,
+    "lon": -52.851,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420790",
+    "nome": "Nova Trento",
+    "lat": -27.294,
+    "lon": -48.94,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420795",
+    "nome": "Nova Veneza",
+    "lat": -28.637,
+    "lon": -49.502,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420797",
+    "nome": "Novo Horizonte",
+    "lat": -26.434,
+    "lon": -52.839,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420800",
+    "nome": "Orleans",
+    "lat": -28.358,
+    "lon": -49.297,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420802",
+    "nome": "Otacílio Costa",
+    "lat": -27.482,
+    "lon": -50.124,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420805",
+    "nome": "Ouro",
+    "lat": -27.349,
+    "lon": -51.615,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420810",
+    "nome": "Ouro Verde",
+    "lat": -26.69,
+    "lon": -52.303,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420815",
+    "nome": "Paial",
+    "lat": -27.219,
+    "lon": -52.577,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420820",
+    "nome": "Painel",
+    "lat": -27.931,
+    "lon": -50.102,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420825",
+    "nome": "Palhoça",
+    "lat": -27.637,
+    "lon": -48.67,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420830",
+    "nome": "Palma Sola",
+    "lat": -26.621,
+    "lon": -53.303,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420835",
+    "nome": "Palmeira",
+    "lat": -27.944,
+    "lon": -50.172,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420840",
+    "nome": "Palmitos",
+    "lat": -27.074,
+    "lon": -53.161,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420845",
+    "nome": "Papanduva",
+    "lat": -26.375,
+    "lon": -50.143,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "4212239",
+    "nome": "Paraíso",
+    "lat": -26.6184,
+    "lon": -53.6716,
+    "regiao": "Oeste Catarinense",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "420855",
+    "nome": "Passo de Torres",
+    "lat": -29.299,
+    "lon": -49.716,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420860",
+    "nome": "Passos Maia",
+    "lat": -26.788,
+    "lon": -51.922,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420865",
+    "nome": "Paulo Lopes",
+    "lat": -27.954,
+    "lon": -48.678,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420870",
+    "nome": "Pedras Grandes",
+    "lat": -28.442,
+    "lon": -49.439,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420875",
+    "nome": "Penha",
+    "lat": -26.771,
+    "lon": -48.645,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420880",
+    "nome": "Peritiba",
+    "lat": -27.265,
+    "lon": -51.897,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "4212650",
+    "nome": "Pescaria Brava",
+    "lat": -28.3966,
+    "lon": -48.8864,
+    "regiao": "Sul Catarinense",
+    "dados_historicos": false
+  },
+  {
+    "ibge": "420885",
+    "nome": "Petrolândia",
+    "lat": -27.527,
+    "lon": -49.688,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420890",
+    "nome": "Pinhalzinho",
+    "lat": -26.846,
+    "lon": -52.982,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420895",
+    "nome": "Pinheiro Preto",
+    "lat": -27.064,
+    "lon": -51.226,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420900",
+    "nome": "Piratuba",
+    "lat": -27.419,
+    "lon": -51.775,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420905",
+    "nome": "Planalto Alegre",
+    "lat": -27.17,
+    "lon": -52.781,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420910",
+    "nome": "Pomerode",
+    "lat": -26.741,
+    "lon": -49.178,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420915",
+    "nome": "Ponte Alta",
+    "lat": -27.482,
+    "lon": -50.385,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420920",
+    "nome": "Ponte Alta do Norte",
+    "lat": -27.156,
+    "lon": -50.466,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420925",
+    "nome": "Ponte Serrada",
+    "lat": -26.867,
+    "lon": -52.007,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420930",
+    "nome": "Porto Belo",
+    "lat": -27.157,
+    "lon": -48.551,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420935",
+    "nome": "Porto União",
+    "lat": -26.228,
+    "lon": -51.079,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420940",
+    "nome": "Pouso Redondo",
+    "lat": -27.257,
+    "lon": -49.94,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420945",
+    "nome": "Praia Grande",
+    "lat": -29.186,
+    "lon": -49.951,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "420950",
+    "nome": "Presidente Castello Branco",
+    "lat": -27.173,
+    "lon": -51.731,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420955",
+    "nome": "Presidente Getúlio",
+    "lat": -27.047,
+    "lon": -49.62,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420960",
+    "nome": "Presidente Nereu",
+    "lat": -27.253,
+    "lon": -49.805,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420962",
+    "nome": "Princesa",
+    "lat": -26.448,
+    "lon": -53.568,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420965",
+    "nome": "Quilombo",
+    "lat": -26.73,
+    "lon": -52.723,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420970",
+    "nome": "Rancho Queimado",
+    "lat": -27.669,
+    "lon": -49.005,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421000",
+    "nome": "Rio Fortuna",
+    "lat": -28.105,
+    "lon": -49.109,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421005",
+    "nome": "Rio Negrinho",
+    "lat": -26.333,
+    "lon": -49.511,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421007",
+    "nome": "Rio Rufino",
+    "lat": -27.886,
+    "lon": -50.007,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420975",
+    "nome": "Rio das Antas",
+    "lat": -26.897,
+    "lon": -51.08,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420980",
+    "nome": "Rio do Campo",
+    "lat": -27.001,
+    "lon": -50.139,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420985",
+    "nome": "Rio do Oeste",
+    "lat": -27.194,
+    "lon": -49.797,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420990",
+    "nome": "Rio do Sul",
+    "lat": -27.214,
+    "lon": -49.642,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "420995",
+    "nome": "Rio dos Cedros",
+    "lat": -26.744,
+    "lon": -49.27,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "421010",
+    "nome": "Riqueza",
+    "lat": -27.072,
+    "lon": -53.326,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421015",
+    "nome": "Rodeio",
+    "lat": -26.922,
+    "lon": -49.371,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "421020",
+    "nome": "Romelândia",
+    "lat": -26.671,
+    "lon": -53.334,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421025",
+    "nome": "Salete",
+    "lat": -26.97,
+    "lon": -49.824,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421027",
+    "nome": "Saltinho",
+    "lat": -26.572,
+    "lon": -52.883,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421030",
+    "nome": "Salto Veloso",
+    "lat": -26.986,
+    "lon": -51.213,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421032",
+    "nome": "Sangão",
+    "lat": -28.572,
+    "lon": -49.128,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421035",
+    "nome": "Santa Cecília",
+    "lat": -26.961,
+    "lon": -50.426,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421040",
+    "nome": "Santa Helena",
+    "lat": -26.939,
+    "lon": -53.615,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421045",
+    "nome": "Santa Rosa de Lima",
+    "lat": -28.028,
+    "lon": -49.142,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421050",
+    "nome": "Santa Rosa do Sul",
+    "lat": -29.13,
+    "lon": -49.732,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421053",
+    "nome": "Santa Terezinha",
+    "lat": -26.789,
+    "lon": -50.008,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421055",
+    "nome": "Santa Terezinha do Progresso",
+    "lat": -26.847,
+    "lon": -53.192,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421060",
+    "nome": "Santiago do Sul",
+    "lat": -26.639,
+    "lon": -52.656,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421065",
+    "nome": "Santo Amaro da Imperatriz",
+    "lat": -27.696,
+    "lon": -48.778,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421165",
+    "nome": "Saudades",
+    "lat": -26.931,
+    "lon": -53.002,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421170",
+    "nome": "Schroeder",
+    "lat": -26.414,
+    "lon": -49.07,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421175",
+    "nome": "Seara",
+    "lat": -27.152,
+    "lon": -52.313,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421177",
+    "nome": "Serra Alta",
+    "lat": -26.727,
+    "lon": -52.84,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421180",
+    "nome": "Siderópolis",
+    "lat": -28.596,
+    "lon": -49.425,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421185",
+    "nome": "Sombrio",
+    "lat": -29.105,
+    "lon": -49.631,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421187",
+    "nome": "Sul Brasil",
+    "lat": -26.734,
+    "lon": -52.962,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421070",
+    "nome": "São Bento do Sul",
+    "lat": -26.253,
+    "lon": -49.39,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421075",
+    "nome": "São Bernardino",
+    "lat": -26.502,
+    "lon": -52.859,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421080",
+    "nome": "São Bonifácio",
+    "lat": -28.006,
+    "lon": -49.107,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421085",
+    "nome": "São Carlos",
+    "lat": -27.077,
+    "lon": -53.035,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421090",
+    "nome": "São Cristóvão do Sul",
+    "lat": -27.291,
+    "lon": -50.519,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421095",
+    "nome": "São Domingos",
+    "lat": -26.559,
+    "lon": -52.533,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421100",
+    "nome": "São Francisco do Sul",
+    "lat": -26.246,
+    "lon": -48.642,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421120",
+    "nome": "São Joaquim",
+    "lat": -28.296,
+    "lon": -49.933,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421125",
+    "nome": "São José",
+    "lat": -27.606,
+    "lon": -48.634,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421130",
+    "nome": "São José do Cedro",
+    "lat": -26.457,
+    "lon": -53.491,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421135",
+    "nome": "São José do Cerrito",
+    "lat": -27.67,
+    "lon": -50.584,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421105",
+    "nome": "São João Batista",
+    "lat": -27.277,
+    "lon": -48.847,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421107",
+    "nome": "São João do Itaperiú",
+    "lat": -26.614,
+    "lon": -48.81,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421110",
+    "nome": "São João do Oeste",
+    "lat": -27.076,
+    "lon": -53.538,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421115",
+    "nome": "São João do Sul",
+    "lat": -29.238,
+    "lon": -49.802,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421140",
+    "nome": "São Lourenço do Oeste",
+    "lat": -26.358,
+    "lon": -52.851,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421145",
+    "nome": "São Ludgero",
+    "lat": -28.318,
+    "lon": -49.172,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421150",
+    "nome": "São Martinho",
+    "lat": -28.175,
+    "lon": -48.989,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421155",
+    "nome": "São Miguel da Boa Vista",
+    "lat": -26.782,
+    "lon": -53.13,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421157",
+    "nome": "São Miguel do Oeste",
+    "lat": -26.726,
+    "lon": -53.505,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421160",
+    "nome": "São Pedro de Alcântara",
+    "lat": -27.557,
+    "lon": -48.809,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421190",
+    "nome": "Taió",
+    "lat": -27.112,
+    "lon": -49.979,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421195",
+    "nome": "Tangará",
+    "lat": -27.136,
+    "lon": -51.249,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421197",
+    "nome": "Tigrinhos",
+    "lat": -26.728,
+    "lon": -53.229,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421200",
+    "nome": "Tijucas",
+    "lat": -27.241,
+    "lon": -48.633,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "421205",
+    "nome": "Timbé do Sul",
+    "lat": -29.063,
+    "lon": -49.851,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421210",
+    "nome": "Timbó",
+    "lat": -26.823,
+    "lon": -49.272,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "421215",
+    "nome": "Timbó Grande",
+    "lat": -26.616,
+    "lon": -50.926,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421225",
+    "nome": "Treviso",
+    "lat": -28.488,
+    "lon": -49.523,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421235",
+    "nome": "Treze Tílias",
+    "lat": -27.003,
+    "lon": -51.407,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421230",
+    "nome": "Treze de Maio",
+    "lat": -28.558,
+    "lon": -49.082,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421240",
+    "nome": "Trombudo Central",
+    "lat": -27.298,
+    "lon": -49.797,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "421220",
+    "nome": "Três Barras",
+    "lat": -26.112,
+    "lon": -50.315,
+    "regiao": "Norte Catarinense"
+  },
+  {
+    "ibge": "421245",
+    "nome": "Tubarão",
+    "lat": -28.467,
+    "lon": -49.013,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421250",
+    "nome": "Tunápolis",
+    "lat": -26.941,
+    "lon": -53.659,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421255",
+    "nome": "Turvo",
+    "lat": -28.927,
+    "lon": -49.67,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421260",
+    "nome": "União do Oeste",
+    "lat": -26.752,
+    "lon": -52.905,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421265",
+    "nome": "Urubici",
+    "lat": -28.016,
+    "lon": -49.593,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421267",
+    "nome": "Urupema",
+    "lat": -27.968,
+    "lon": -50.019,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421270",
+    "nome": "Urussanga",
+    "lat": -28.522,
+    "lon": -49.317,
+    "regiao": "Sul Catarinense"
+  },
+  {
+    "ibge": "421280",
+    "nome": "Vargem",
+    "lat": -27.543,
+    "lon": -50.831,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421283",
+    "nome": "Vargem Bonita",
+    "lat": -27.2,
+    "lon": -51.565,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421275",
+    "nome": "Vargeão",
+    "lat": -26.849,
+    "lon": -52.165,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421285",
+    "nome": "Vidal Ramos",
+    "lat": -27.395,
+    "lon": -49.357,
+    "regiao": "Vale do Itajaí"
+  },
+  {
+    "ibge": "421290",
+    "nome": "Videira",
+    "lat": -27.006,
+    "lon": -51.157,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421295",
+    "nome": "Vitor Meireles",
+    "lat": -26.871,
+    "lon": -49.817,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421300",
+    "nome": "Witmarsum",
+    "lat": -27.352,
+    "lon": -49.94,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "421305",
+    "nome": "Xanxerê",
+    "lat": -26.876,
+    "lon": -52.4,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421310",
+    "nome": "Xavantina",
+    "lat": -26.901,
+    "lon": -52.362,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421315",
+    "nome": "Xaxim",
+    "lat": -26.962,
+    "lon": -52.539,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "421320",
+    "nome": "Zortéa",
+    "lat": -27.474,
+    "lon": -51.554,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420030",
+    "nome": "Água Doce",
+    "lat": -26.982,
+    "lon": -51.556,
+    "regiao": "Serrana"
+  },
+  {
+    "ibge": "420045",
+    "nome": "Águas Frias",
+    "lat": -26.858,
+    "lon": -52.864,
+    "regiao": "Oeste Catarinense"
+  },
+  {
+    "ibge": "420050",
+    "nome": "Águas Mornas",
+    "lat": -27.703,
+    "lon": -48.822,
+    "regiao": "Grande Florianópolis"
+  },
+  {
+    "ibge": "420040",
+    "nome": "Águas de Chapecó",
+    "lat": -27.071,
+    "lon": -53.018,
+    "regiao": "Oeste Catarinense"
+  }
+]
