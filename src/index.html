@@ -96,15 +96,6 @@
       <div class="nav-item" onclick="navegarPara('sobre')" id="nav-sobre">
         <span class="nav-icon">ℹ️</span> Sobre o Projeto
       </div>
-      <div class="nav-item" onclick="window.open('pages/metodologia.html')" title="Abre em nova aba">
-        <span class="nav-icon">🔗</span> Metodologia ↗
-      </div>
-      <div class="nav-item" onclick="window.open('pages/impacto-social.html')" title="Abre em nova aba">
-        <span class="nav-icon">🔗</span> Impacto Social ↗
-      </div>
-      <div class="nav-item" onclick="window.open('pages/sobre.html')" title="Abre em nova aba">
-        <span class="nav-icon">🔗</span> Sobre ↗
-      </div>
     </div>
   </nav>
 
@@ -665,11 +656,13 @@
           <div class="method-text">
             <strong style="color:var(--text-primary)">DATASUS / SIH-SUS:</strong> Dados de internações hospitalares por doenças respiratórias (CID-10 J00–J99)
             do Sistema de Informações Hospitalares do SUS para o estado de Santa Catarina, período 1990–2026,
-            agrupados mensalmente por município de residência do paciente.
+            agrupados mensalmente por município de residência do paciente. A coleta tenta usar fontes oficiais e,
+            quando uma atualização completa não está disponível, mantém o último dataset local válido registrado pelo sistema.
             Fonte: <code>tabnet.datasus.gov.br</code> e arquivos DBC via biblioteca pysus.<br><br>
             <strong style="color:var(--text-primary)">INMET:</strong> Dados meteorológicos das estações automáticas de Santa Catarina,
-            coletados via API pública (<code>apitempo.inmet.gov.br</code>).
-            Variáveis: temperatura média, mínima, máxima, umidade relativa e precipitação.
+            coletados via API pública (<code>apitempo.inmet.gov.br</code>) ou preservados do último dataset válido quando a coleta oficial vem incompleta.
+            Variáveis: temperatura média, mínima, máxima, umidade relativa e precipitação.<br><br>
+            <strong style="color:var(--text-primary)">Open-Meteo:</strong> previsão meteorológica de 7 dias usada na aba de previsão.
           </div>
         </div>
 
@@ -729,7 +722,7 @@
             • Os dados de internação são por município de <em>residência</em>, não de ocorrência, podendo introduzir viés em municípios sem hospital próprio.<br>
             • A associação de municípios a estações distantes pode reduzir a representatividade climática local.<br>
             • Correlação não implica causalidade; outros fatores (poluição, densidade populacional, acesso à saúde) influenciam as internações.<br>
-            • O sistema utiliza dados históricos; não realiza previsões meteorológicas.<br>
+            • O sistema utiliza dados históricos e previsão meteorológica de 7 dias; não realiza previsão epidemiológica nem diagnóstico médico.<br>
             • Municípios pequenos podem apresentar flutuações estatísticas maiores por volume reduzido de internações.
           </div>
         </div>
@@ -740,6 +733,7 @@
             Os dados são atualizados mensalmente via GitHub Actions (workflow <code>atualizar-dados.yml</code>),
             que executa os scripts Python de coleta e processamento, realiza commit automático dos arquivos
             atualizados e publica via GitHub Pages. O fluxo é resiliente com 3 etapas: API oficial → download público → último dataset local válido.
+            A previsão Open-Meteo pode ser atualizada separadamente e o status de cada fonte fica registrado em <code>data/status_dados.json</code>.
           </div>
         </div>
       </div>
